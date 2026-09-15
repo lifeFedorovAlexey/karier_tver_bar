@@ -1,0 +1,38 @@
+.qrMenu {
+  min-height: 100vh;
+  padding: 24px 18px 64px;
+  background: #e9e2d6;
+}
+
+.qrMenuHeader {
+  width: min(904px, 100%);
+  min-height: 92px;
+  margin: 0 auto 20px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 20px;
+}
+
+.qrMenuHeader > a:first-child { justify-self: start; }
+.qrMenuHeader .logo { min-width: 0; }
+.qrMenuHeader .logo strong { font-family: var(--font-condensed); font-weight: 700; text-transform: uppercase; font-size: 25px; }
+.qrMenuHeader .logo small { display: none; }
+.qrMenuHeader > div { text-align: center; }
+.qrMenuHeader span { font-family: var(--font-condensed); font-size: 10px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; }
+.qrMenuHeader h1 { margin: 0; font-family: var(--font-condensed); font-size: 46px; font-weight: 600; line-height: 1; text-transform: uppercase; }
+.qrMenuBack { justify-self: end; padding: 9px 16px; border: 1px solid currentColor; border-radius: 999px; font-family: var(--font-condensed); font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+
+.qrMenuPages { width: min(904px, 100%); margin: 0 auto; display: grid; gap: 16px; }
+.qrMenuPage { margin: 0; line-height: 0; overflow: hidden; background: #fff; box-shadow: 0 8px 30px rgba(23, 36, 31, .1); }
+.qrMenuPage img { display: block; width: 100%; height: auto; object-fit: contain; }
+
+@media (max-width: 600px) {
+  .qrMenu { padding: 12px 0 32px; }
+  .qrMenuHeader { min-height: 72px; padding: 0 14px; margin-bottom: 10px; grid-template-columns: 1fr auto; }
+  .qrMenuHeader > div { display: none; }
+  .qrMenuHeader .logo svg { width: 42px; }
+  .qrMenuHeader .logo strong { font-size: 32px; }
+  .qrMenuPages { gap: 8px; }
+  .qrMenuPage { box-shadow: none; }
+}

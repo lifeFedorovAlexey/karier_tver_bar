@@ -1,0 +1,287 @@
+:root {
+  --display: var(--font-condensed);
+  --sans: var(--font-sans);
+  --script: var(--font-script);
+}
+
+body { font-family: var(--font-sans); }
+.logo strong,
+.desktopNav,
+.phoneLink,
+.button,
+.experienceContent h3,
+.textLink,
+.manifestoCopy,
+.footer { font-family: var(--font-condensed); }
+.hero h1,
+.heroNote,
+.manifestoNote { font-family: var(--font-script); }
+
+@media (min-width: 801px) {
+  .pageWidth,
+  .headerInner { width: min(1180px, calc(100% - 58px)); }
+
+  .homeHero {
+    height: auto;
+    min-height: 0;
+  }
+  .siteHeader { height: 87px; }
+  .headerInner { gap: 27px; }
+  .logo { min-width: 138px; gap: 8px; }
+  .logo svg { width: 43px; }
+  .logo strong { font-size: 23px; }
+  .desktopNav { gap: 29px; font-size: 11px; }
+  .desktopNav a.active::after { right: 0; }
+  .phoneLink { margin-left: auto; font-size: 11px; }
+  .headerBooking .button { min-width: 139px; min-height: 34px; }
+
+  .heroContent { padding-top: 72px; }
+  .hero h1 {
+    font-size: clamp(82px, 9.65vw, 120px);
+    line-height: .68;
+    margin: 0 0 32px;
+    transform: rotate(-4deg);
+  }
+  .heroIntro { font-size: 16px !important; line-height: 1.35 !important; }
+  .heroActions .button { min-width: 197px; min-height: 41px; }
+  .heroNote { top: 145px; right: 7.2vw; font-size: 29px !important; }
+  .scrollCue { display: none; }
+
+  .homeCards { padding: 17px 0 21px; }
+  .experienceGrid { gap: 14px; }
+  .experienceCard { min-height: 0; aspect-ratio: 1.032 / 1; border-radius: 12px; }
+  .experienceCard > img { object-position: center 54%; }
+  .experienceContent { left: 32px; right: 26px; bottom: 18px; }
+  .experienceContent h3 { font-size: 39px; line-height: 1; margin: 0; letter-spacing: .025em; }
+  .experienceContent p { font-size: 14px; line-height: 1.35; margin: 13px 0 101px; max-width: 185px; }
+  .experienceContent .textLink { font-size: 11px; letter-spacing: .04em; }
+  .textLink i { width: 35px; height: 35px; }
+  .textLink i svg { width: 15px; }
+
+  .homeManifesto {
+    width: min(1180px, calc(100% - 58px));
+    min-height: 148px;
+    grid-template-columns: 126px 1fr 170px;
+    gap: 38px;
+  }
+  .manifestoTrees { width: 93px; }
+  .manifestoCopy span { font-size: 13px; line-height: 1.55; letter-spacing: .25em; font-weight: 400; }
+  .manifestoCopy p { margin-top: 12px; font-family: var(--font-sans); font-size: 11px; line-height: 1.4; }
+  .manifestoNote { font-size: 29px; }
+  .homeManifesto::after { width: 250px; height: 78px; right: -44px; bottom: 9px; }
+
+  .closingLandscape { height: clamp(132px, 15.5vw, 193px); }
+  .closingLandscape > img { object-position: center 46%; }
+  .footerMain { min-height: 78px; padding-block: 12px; }
+  .footerBrand .logo { min-width: 145px; }
+  .footerBrand .logo strong { font-size: 24px; }
+  .footerContacts { font-size: 10px; gap: 25px; }
+  .footerSocial { width: 35px; height: 35px; }
+  .footerSocial svg { width: 17px; height: 17px; }
+}
+
+@media (max-width: 800px) {
+  .pageWidth,
+  .headerInner { width: calc(100% - 32px); }
+
+  .heroContent { padding-bottom: 54px; }
+  .hero h1 { font-size: clamp(63px, 20vw, 82px); }
+  .heroNote { top: 112px; right: 18px; }
+  .homeCards { padding: 14px 0 18px; }
+  .experienceGrid { gap: 14px; }
+  .experienceCard { min-height: 0; aspect-ratio: .9; }
+  .experienceContent p { margin-bottom: 52px; }
+  .homeManifesto { min-height: 310px; padding-block: 38px; }
+  .footerMain { padding-block: 34px; }
+  .footerContacts { gap: 16px; }
+}
+
+@media (max-width: 430px) {
+  .heroNote { font-size: 22px !important; }
+  .heroIntro { font-size: 14px !important; }
+  .heroActions .button { min-height: 42px; }
+  .experienceContent { left: 24px; right: 20px; }
+  .experienceContent h3 { font-size: 34px; }
+  .experienceContent p { font-size: 12px; }
+}
+
+/* Home reference alignment: keep the photographed composition and CTA rhythm
+   identical to the supplied mobile-width art direction. */
+@media (min-width: 801px) {
+  .homeHero > img { object-position: 79% center; }
+  .homeHero .heroContent { padding-top: 50px; padding-left: 28px; }
+  .homeHero h1 { font-size: clamp(76px, 8.9vw, 112px); }
+  .homeHero .heroNote { right: 3.5vw; }
+
+  .homeCards .experienceCard:first-child > img { object-position: center 74%; }
+  .homeCards .experienceCard:last-child > img { object-position: center top; }
+  .homeCards .experienceContent h3 { font-size: 41px; }
+  .homeCards .textLink { justify-content: flex-start; gap: 15px; }
+
+  .manifestoTrees { transform: translateX(28px); }
+  .footerBrand .logo { transform: translateX(22px); }
+}
+
+@media (max-width: 800px) {
+  .homeHero > img { object-position: 79% center; }
+  .homeCards .experienceCard:first-child > img { object-position: center 74%; }
+  .homeCards .experienceCard:last-child > img { object-position: center top; }
+  .homeCards .textLink { justify-content: flex-start; gap: 15px; }
+}
+
+.logoArtwork {
+  display: block;
+  width: 128px;
+  height: 76px;
+  object-fit: contain;
+  filter: brightness(0) saturate(100%);
+}
+.logoLight .logoArtwork { filter: none; }
+.logo:has(.logoArtwork) { gap: 0; }
+.logo:has(.logoArtwork) span { display: none; }
+.logoFooter .logoArtwork {
+  width: 160px;
+  height: 54px;
+}
+
+.heroTitle {
+  width: min(330px, 42vw);
+  height: auto;
+  margin: 0 0 16px !important;
+  transform: none !important;
+}
+.heroTitleArtwork {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.homeManifesto::after {
+  width: 280px;
+  height: 170px;
+  right: -58px;
+  bottom: -12px;
+  background: url("/images/manifesto-brush.png") center / 100% 100% no-repeat;
+  opacity: 1;
+  transform: none;
+  clip-path: none;
+}
+
+/* Latest homepage reference: image-led hero, brush-framed cards and panorama. */
+@media (min-width: 801px) {
+  .homeHero {
+    height: auto;
+    min-height: 0;
+  }
+  .homeHero > img { object-position: center 55%; }
+  .homeHero .heroContent {
+    justify-content: flex-start;
+    padding-top: 150px;
+    padding-left: 28px;
+  }
+  .homeHero .heroTitle { width: 330px; }
+  .homeHero .heroActions { margin-top: 17px; }
+  .homeHero .heroActions .button {
+    width: 222px;
+    min-width: 222px;
+    min-height: 46px;
+    border-radius: 0;
+    background: #ead5b0;
+    clip-path: polygon(2% 14%, 14% 5%, 31% 8%, 49% 2%, 71% 7%, 96% 4%, 99% 22%, 96% 38%, 100% 58%, 95% 91%, 72% 96%, 49% 92%, 29% 98%, 5% 91%, 1% 68%, 4% 47%);
+  }
+
+  .homeCards { padding: 14px 0 15px; }
+  .homeCards .experienceGrid { gap: 17px; }
+  .homeCards .experienceCard {
+    aspect-ratio: 1.1;
+    min-height: 0;
+    border: 8px solid var(--paper);
+    border-radius: 0;
+    clip-path: polygon(1% 3%, 7% 1%, 16% 3%, 28% 1%, 43% 3%, 58% 1%, 74% 3%, 91% 1%, 99% 5%, 97% 17%, 99% 33%, 97% 51%, 100% 68%, 98% 86%, 94% 99%, 78% 97%, 62% 100%, 47% 98%, 31% 100%, 16% 97%, 3% 99%, 1% 86%, 3% 67%, 1% 49%, 3% 30%);
+  }
+  .homeCards .experienceCard > img { object-position: center 57%; }
+  .homeCards .experienceCard:last-child > img { object-position: center 49%; }
+  .homeCards .cardShade { background: linear-gradient(0deg, rgba(10,17,14,.84), rgba(10,17,14,0) 62%); }
+  .homeCards .experienceContent { left: 23px; right: 20px; bottom: 12px; }
+  .homeCards .experienceContent h3 { display: none; }
+  .homeCards .experienceContent p {
+    max-width: 250px;
+    margin: 0 0 14px;
+    font-size: 13px;
+    line-height: 1.3;
+  }
+  .homeCards .textLink {
+    width: 204px;
+    height: 43px;
+    justify-content: center;
+    gap: 18px;
+    background: #ead5b0;
+    color: var(--ink);
+    clip-path: polygon(2% 16%, 14% 6%, 31% 9%, 48% 3%, 70% 7%, 96% 5%, 99% 25%, 96% 42%, 100% 59%, 95% 91%, 72% 96%, 49% 92%, 29% 98%, 5% 91%, 1% 69%, 4% 46%);
+  }
+  .homeCards .textLink i {
+    width: auto;
+    height: auto;
+    background: transparent;
+  }
+  .homeCards .textLink i svg { width: 18px; }
+
+  .homePanorama {
+    height: clamp(270px, 32vw, 360px);
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+  }
+  .homePanorama > img { object-position: center 48%; }
+  .panoramaNote {
+    position: absolute;
+    z-index: 2;
+    left: 56px;
+    bottom: 47px;
+    margin: 0;
+    font-family: var(--font-script);
+    font-size: 42px;
+    line-height: .82;
+    text-align: center;
+    transform: rotate(-7deg);
+  }
+  .panoramaNote i { font-family: var(--font-sans); font-style: normal; font-size: 36px; }
+  .panoramaLocation {
+    position: absolute;
+    z-index: 2;
+    top: 39px;
+    right: 47px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 23px;
+    background: rgba(29, 29, 25, .78);
+    clip-path: polygon(3% 9%, 22% 2%, 44% 6%, 67% 1%, 97% 8%, 94% 93%, 75% 98%, 48% 94%, 25% 99%, 3% 90%);
+    font-size: 11px;
+    line-height: 1.25;
+    text-transform: uppercase;
+  }
+  .panoramaLocation svg { flex: 0 0 auto; }
+
+  .footerMain { min-height: 98px; padding-block: 16px; }
+  .footerContacts { gap: 19px; }
+  .footerSocial { flex: 0 0 35px; }
+}
+
+@media (max-width: 800px) {
+
+  .homeHero > img { object-position: center 56%; }
+  .homeHero .heroContent { padding-top: 130px; padding-left: 0; }
+  .homeHero .heroTitle { width: min(330px, 86vw); }
+  .homeHero .heroActions .button { border-radius: 0; width: 205px; min-width: 205px; min-height: 44px; clip-path: polygon(2% 16%, 15% 6%, 49% 3%, 97% 6%, 99% 50%, 96% 93%, 50% 97%, 4% 91%); }
+  .homeCards .experienceCard { border: 7px solid var(--paper); border-radius: 0; clip-path: polygon(2% 2%, 98% 1%, 99% 98%, 2% 99%); }
+  .homeCards .experienceContent h3 { display: none; }
+  .homeCards .experienceContent p { margin-bottom: 14px; }
+  .homeCards .textLink { width: 205px; height: 43px; justify-content: center; gap: 18px; background: #ead5b0; clip-path: polygon(2% 16%, 15% 6%, 49% 3%, 97% 6%, 99% 50%, 96% 93%, 50% 97%, 4% 91%); }
+  .homeCards .textLink i { width: auto; height: auto; background: transparent; }
+  .homePanorama { height: 330px; }
+  .panoramaNote { left: 26px; bottom: 42px; font-size: 31px; }
+  .panoramaLocation { top: 24px; right: 15px; padding: 10px 14px; font-size: 9px; }
+  .footerMain { min-height: 110px; }
+  .footerContacts { gap: 13px; }
+}

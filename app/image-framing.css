@@ -1,0 +1,11 @@
+.homeHero > img { object-position: center 69%; }
+.innerHero > img { object-position: center 46%; }
+.bathHero > img { object-position: center 64%; }
+.menuPhoto > img { object-position: center 42%; }
+.ritualPhoto > img { object-position: center 72%; }
+
+@media (max-width: 800px) {
+  .homeHero > img { object-position: 59% 69%; }
+  .innerHero > img { object-position: 62% 46%; }
+  .bathHero > img { object-position: 58% 67%; }
+}

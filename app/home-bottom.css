@@ -1,0 +1,100 @@
+.homeManifesto {
+  min-height: 250px;
+  display: grid;
+  grid-template-columns: 180px 1fr 260px;
+  gap: 54px;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.homeManifesto::after {
+  content: "";
+  position: absolute;
+  width: 360px;
+  height: 115px;
+  right: -70px;
+  bottom: 20px;
+  background: #eadcc7;
+  opacity: .7;
+  transform: rotate(-7deg);
+  clip-path: polygon(4% 27%, 98% 0, 91% 72%, 0 100%);
+}
+
+.manifestoTrees {
+  width: 145px;
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.manifestoCopy { max-width: 550px; }
+.manifestoCopy span {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.65;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+}
+.manifestoCopy p { max-width: 500px; margin: 18px 0 0; font-size: 13px; }
+.manifestoNote {
+  position: relative;
+  z-index: 1;
+  justify-self: center;
+  font-family: var(--display);
+  font-size: 34px;
+  font-style: italic;
+  font-weight: 600;
+  line-height: .86;
+  transform: rotate(-7deg);
+}
+.manifestoNote i { font-family: var(--sans); font-size: 28px; font-weight: 400; }
+
+.closingLandscape {
+  height: 365px;
+  position: relative;
+  overflow: hidden;
+}
+.closingLandscape > img { object-position: center 72%; }
+.closingShade { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(12,22,18,.32), transparent 55%); }
+.closingLandscape p {
+  position: absolute;
+  inset: auto 0 34px;
+  margin: 0;
+  color: #fff;
+  text-align: center;
+  font-family: var(--display);
+  font-size: 34px;
+  font-style: italic;
+}
+
+@media (min-width: 801px) {
+  .footerMain { padding-block: 28px; grid-template-columns: 200px 1fr auto; gap: 30px; align-items: center; }
+  .footerBrand p { display: none; }
+  .footer nav { flex-direction: row; justify-content: center; gap: 24px; font-size: 11px; opacity: .7; }
+  .footerContacts { flex-direction: row; align-items: center; gap: 24px; font-size: 10px; }
+  .footerContacts > * { white-space: nowrap; }
+  .footerBottom { display: none; }
+}
+
+.footerSocial {
+  width: 38px;
+  height: 38px;
+  justify-content: center;
+  border: 1px solid rgba(255,255,255,.5);
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+@media (max-width: 800px) {
+  .homeManifesto { min-height: 380px; grid-template-columns: 90px 1fr; gap: 25px; padding-block: 55px; }
+  .manifestoTrees { width: 82px; }
+  .manifestoCopy span { font-size: 12px; letter-spacing: .2em; }
+  .manifestoNote { grid-column: 2; justify-self: start; font-size: 29px; margin-left: 20px; }
+  .homeManifesto::after { width: 250px; right: -70px; bottom: 24px; }
+  .closingLandscape { height: 300px; }
+}
