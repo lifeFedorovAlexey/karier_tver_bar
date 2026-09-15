@@ -5,22 +5,95 @@ import { Header } from "@/components/Header";
 import { ClockIcon, PinIcon, PhoneIcon } from "@/components/icons";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = { title: "Контакты", description: "Адрес, часы работы и бронирование кафе и бани «Карьер» в Твери.", alternates: { canonical: "/contacts" } };
+export const metadata: Metadata = {
+  title: "Контакты",
+  description:
+    "Адрес, часы работы и бронирование кафе и бани «Карьер» в Твери.",
+  alternates: { canonical: "/contacts" },
+};
 
 export default function ContactsPage() {
-  return <main className="contactsPage"><section className="innerHero contactsVisualHero"><Image src="/images/beach-panorama-2026.webp" alt="Центральный пляж Константиновского карьера" fill priority sizes="100vw"/><div className="heroShade"/><Header overlay/><div className="innerHeroContent pageWidth"><span className="eyebrow light">Будем рады видеть</span><h1>Встретимся<br/><em>у воды</em></h1><p>Кафе, баня и спокойный отдых<br/>в нескольких минутах от Твери.</p></div></section>
-    <section className="contactGrid contactGridDesigned pageWidth"><div className="contactPanel"><span className="eyebrow">Контакты</span><a href={site.phoneHref}><PhoneIcon/><span><small>Телефон</small><b>{site.phoneLabel}</b></span></a><div><PinIcon/><span><small>Адрес</small><b>{site.address}</b></span></div><div><ClockIcon/><span><small>Режим работы</small><b>{site.hours}</b></span></div></div>
-    <div className="contactBookingCard"><span className="eyebrow light">Онлайн-запись</span><h2>Выберите<br/><em>свой отдых</em></h2><p>Забронируйте столик или удобное время для бани через сервис YCLIENTS.</p><ButtonLink href={site.bookingUrl}>Перейти к записи</ButtonLink><small>Ссылка временная — заменим на прямую страницу записи.</small></div></section>
-    <section className="mapSection" aria-label="Расположение на карте">
-      <iframe
-        src="https://yandex.ru/map-widget/v1/?ll=35.995277%2C56.846352&z=16&pt=35.995277%2C56.846352%2Cpm2rdm"
-        title="Карьер на Яндекс Картах"
-        loading="lazy"
-        allowFullScreen
-      />
-      <a className="mapLink" href="https://yandex.ru/maps/?ll=35.995277%2C56.846352&mode=whatshere&whatshere%5Bpoint%5D=35.995277%2C56.846352&whatshere%5Bzoom%5D=16&z=16" target="_blank" rel="noreferrer">
-        <PinIcon size={18} /> Открыть в Яндекс Картах
-      </a>
-    </section>
-  </main>;
+  return (
+    <main className="contactsPage">
+      <section className="innerHero contactsVisualHero">
+        <Image
+          src="/images/beach-panorama-2026.webp"
+          alt="Барная стойка кафе «Карьер»"
+          fill
+          priority
+          sizes="100vw"
+        />
+        <div className="heroShade" />
+        <Header overlay />
+        <div className="innerHeroContent pageWidth">
+          <span className="eyebrow light">Будем рады видеть</span>
+          <h1>
+            Встретимся
+            <br />
+            <em>у воды</em>
+          </h1>
+          <p>
+            Кафе, баня и спокойный отдых
+            <br />в нескольких минутах от Твери.
+          </p>
+        </div>
+      </section>
+      <section className="contactGrid contactGridDesigned pageWidth">
+        <div className="contactPanel">
+          <span className="eyebrow">Контакты</span>
+          <a href={site.phoneHref}>
+            <PhoneIcon />
+            <span>
+              <small>Телефон</small>
+              <b>{site.phoneLabel}</b>
+            </span>
+          </a>
+          <div>
+            <PinIcon />
+            <span>
+              <small>Адрес</small>
+              <b>{site.address}</b>
+            </span>
+          </div>
+          <div>
+            <ClockIcon />
+            <span>
+              <small>Режим работы</small>
+              <b>{site.hours}</b>
+            </span>
+          </div>
+        </div>
+        <div className="contactBookingCard">
+          <span className="eyebrow light">Онлайн-запись</span>
+          <h2>
+            Выберите
+            <br />
+            <em>свой отдых</em>
+          </h2>
+          <p>
+            Забронируйте столик или удобное время для бани через сервис
+            YCLIENTS.
+          </p>
+          <ButtonLink href={site.bookingUrl}>Перейти к записи</ButtonLink>
+          <small>Ссылка временная — заменим на прямую страницу записи.</small>
+        </div>
+      </section>
+      <section className="mapSection" aria-label="Расположение на карте">
+        <iframe
+          src="https://yandex.ru/map-widget/v1/?ll=35.995277%2C56.846352&z=16&pt=35.995277%2C56.846352%2Cpm2rdm"
+          title="Карьер на Яндекс Картах"
+          loading="lazy"
+          allowFullScreen
+        />
+        <a
+          className="mapLink"
+          href="https://yandex.ru/maps/?ll=35.995277%2C56.846352&mode=whatshere&whatshere%5Bpoint%5D=35.995277%2C56.846352&whatshere%5Bzoom%5D=16&z=16"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <PinIcon size={18} /> Открыть в Яндекс Картах
+        </a>
+      </section>
+    </main>
+  );
 }

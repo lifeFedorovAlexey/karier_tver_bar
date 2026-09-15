@@ -5,6 +5,12 @@
   --cream: #ead5b0;
 }
 
+html,
+body {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
 /* CTA contract: header is a pill; content CTAs use the rough-paper shape. */
 .button {
   min-height: 46px;
@@ -45,14 +51,14 @@
 }
 .homeHero .heroParallaxImage {
   --hero-parallax: 0px;
-  transform: translate3d(0, var(--hero-parallax), 0) scale(1.3);
-  transform-origin: center;
+  transform: translate3d(0, var(--hero-parallax), 0) scale(1.12);
+  transform-origin: center 58%;
   will-change: transform;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .homeHero .heroParallaxImage {
-    transform: scale(1.3);
+    transform: scale(1.12);
   }
 }
 
@@ -316,8 +322,8 @@
   }
   .siteHeader .mobileMenu summary {
     list-style: none;
-    width: 44px;
-    height: 44px;
+    width: 42px;
+    height: 42px;
     border: 1px solid currentColor;
     border-radius: 50%;
     display: grid;
@@ -330,9 +336,10 @@
   }
   .siteHeader .mobileMenu summary span {
     display: block;
-    width: 17px;
-    height: 1px;
+    width: 18px;
+    height: 2px;
     background: currentColor;
+    transition: transform 0.2s ease, opacity 0.2s ease;
   }
   .siteHeader .mobileMenu nav {
     position: absolute;
@@ -380,6 +387,32 @@
   }
 }
 
+.siteHeader .mobileMenu summary span {
+  width: 18px;
+  height: 2px;
+  border-radius: 2px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.siteHeader .mobileMenu {
+  flex: 0 0 auto;
+  margin-left: auto;
+}
+.siteHeader .mobileMenu nav {
+  max-height: calc(100dvh - 92px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+}
+.siteHeader .mobileMenu[open] summary span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+.siteHeader .mobileMenu[open] summary span:nth-child(2) {
+  opacity: 0;
+}
+.siteHeader .mobileMenu[open] summary span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
 @media (max-width: 800px) {
   .siteHeader {
     height: 76px;
@@ -400,6 +433,27 @@
     -webkit-backdrop-filter: blur(12px);
     backdrop-filter: blur(12px);
   }
+  .siteHeader .mobileMenu summary {
+    width: 42px;
+    height: 42px;
+    background: rgba(15, 27, 22, 0.2);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+  }
+  .innerHeroContent,
+  .story > *,
+  .menuList,
+  .ritualFeatures {
+    min-width: 0;
+    max-width: 100%;
+  }
+  .innerHero h1,
+  .innerHero h1 em,
+  .story h2,
+  .storyLead,
+  .story p {
+    overflow-wrap: anywhere;
+  }
 }
 
 /* Keep the hero compact at every breakpoint; never reserve a full viewport. */
@@ -409,7 +463,7 @@
     min-height: 0;
   }
   .homeHero .heroContent {
-    padding-top: clamp(118px, 18svh, 142px);
+    padding-top: clamp(178px, 24svh, 205px);
     padding-left: clamp(38px, 4vw, 62px);
     padding-bottom: 0;
   }

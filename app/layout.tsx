@@ -22,8 +22,8 @@ export const metadata: Metadata = {
   description: "Кафе с сезонной кухней и баня на берегу Константиновского карьера в Твери. Отдых, вкус и настоящий пар у воды.",
   applicationName: "Карьер",
   alternates: { canonical: "/" },
-  openGraph: { title: "Карьер — кафе и баня у воды", description: "Место у воды, куда хочется возвращаться.", url: "/", siteName: "Карьер", locale: "ru_RU", type: "website", images: [{ url: "/images/karier-hero-final.png", width: 1942, height: 809 }] },
-  twitter: { card: "summary_large_image", images: ["/images/karier-hero-final.png"] },
+  openGraph: { title: "Карьер — кафе и баня у воды", description: "Место у воды, куда хочется возвращаться.", url: "/", siteName: "Карьер", locale: "ru_RU", type: "website", images: [{ url: "/images/karier-bathhouse-enhanced-4k.png", width: 4096, height: 4096 }] },
+  twitter: { card: "summary_large_image", images: ["/images/karier-bathhouse-enhanced-4k.png"] },
   robots: { index: true, follow: true },
 };
 

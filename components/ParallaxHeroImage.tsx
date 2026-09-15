@@ -14,7 +14,7 @@ export function ParallaxHeroImage() {
     const update = () => {
       frame = 0;
       const heroHeight = image.parentElement?.clientHeight ?? 400;
-      const offset = Math.min(window.scrollY * 0.22, heroHeight * 0.14);
+      const offset = Math.min(window.scrollY * 0.12, heroHeight * 0.05);
       image.style.setProperty("--hero-parallax", `${offset}px`);
     };
     const onScroll = () => {
@@ -33,7 +33,7 @@ export function ParallaxHeroImage() {
     <Image
       ref={imageRef}
       className="heroParallaxImage"
-      src="/images/karier-hero-final.png"
+      src="/images/karier-bathhouse-enhanced-4k.png"
       alt="Кафе и баня «Карьер» на берегу Константиновского карьера"
       fill
       priority
