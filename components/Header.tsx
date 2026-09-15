@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import { navigation, site } from "@/lib/site";
 import { Logo } from "./Logo";
 import { PhoneIcon } from "./icons";
@@ -9,16 +10,24 @@ import { ButtonLink } from "./ButtonLink";
 
 export function Header({ overlay = false }: { overlay?: boolean }) {
   const pathname = usePathname();
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const updateHeader = () => setScrolled(window.scrollY > 18);
+    updateHeader();
+    window.addEventListener("scroll", updateHeader, { passive: true });
+    return () => window.removeEventListener("scroll", updateHeader);
+  }, []);
 
   return (
-    <header className={`siteHeader ${overlay ? "siteHeaderOverlay" : ""}`}>
+    <header className={`siteHeader ${overlay ? "siteHeaderOverlay" : ""} ${scrolled ? "siteHeaderScrolled" : ""}`}>
       <div className="headerInner">
         <Logo light={overlay} />
         <nav aria-label="Основная навигация" className="desktopNav">
           {navigation.map((item) => <Link key={item.href} href={item.href} className={item.href === pathname ? "active" : undefined} aria-current={item.href === pathname ? "page" : undefined}>{item.label}</Link>)}
         </nav>
         <a className="phoneLink" href={site.phoneHref}><PhoneIcon size={16} /> {site.phoneLabel}</a>
-        <div className="headerBooking"><ButtonLink href="/contacts">Забронировать</ButtonLink></div>
+        <div className="headerBooking"><ButtonLink href={site.bookingUrl}>Забронировать</ButtonLink></div>
         <details className="mobileMenu">
           <summary aria-label="Открыть меню"><span /><span /><span /></summary>
           <nav aria-label="Мобильная навигация">

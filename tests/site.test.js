@@ -21,6 +21,7 @@ test("homepage uses the final hero artwork", async () => {
   assert.match(hero, /src="\/images\/karier-hero-final\.png"/);
   assert.match(hero, /window\.scrollY \* 0\.22/);
   assert.doesNotMatch(page, /src="\/images\/karier-real-hero\.png"/);
+  assert.match(page, /Выбрать дату и время/);
 });
 
 test("mobile layout does not force a desktop minimum width", async () => {
@@ -36,10 +37,10 @@ test("uploaded cafe, bathhouse, and beach photos are assigned to the right secti
     fs.readFile(new URL("../app/bathhouse/page.tsx", import.meta.url), "utf8"),
     fs.readFile(new URL("../lib/site.ts", import.meta.url), "utf8"),
   ]);
-  assert.match(cafe, /src="\/images\/cafe-hero\.webp"/);
-  assert.match(cafe, /src="\/images\/cafe-interior\.webp"/);
-  assert.match(bathhouse, /src="\/images\/bathhouse-hero\.webp"/);
-  assert.match(bathhouse, /src="\/images\/bathhouse-room\.webp"/);
+  assert.match(cafe, /className="innerHero"[\s\S]*src="\/images\/cafe-card\.webp"/);
+  assert.match(cafe, /ImageGallery[\s\S]*cafe-hero\.webp[\s\S]*cafe-interior\.webp[\s\S]*karier-real-cafe\.png/);
+  assert.match(bathhouse, /className="innerHero bathHero"[\s\S]*src="\/images\/karier-real-bathhouse\.png"/);
+  assert.match(bathhouse, /ImageGallery[\s\S]*bathhouse-hero\.webp[\s\S]*bathhouse-room\.webp[\s\S]*bathhouse-card\.webp/);
   assert.match(home, /src="\/images\/footer-panorama\.png"/);
   assert.match(site, /image: "\/images\/cafe-card\.webp"/);
   assert.match(site, /image: "\/images\/karier-real-bathhouse\.png"/);
@@ -60,15 +61,16 @@ test("homepage hero uses compact responsive height", async () => {
   ].map((file) => fs.readFile(new URL(file, import.meta.url), "utf8")))).join("\n");
   assert.doesNotMatch(css, /height:\s*min\(760px,\s*100svh\)/);
   assert.doesNotMatch(css, /height:\s*min\(700px,\s*100svh\)/);
-  assert.match(css, /@media \(min-width: 1101px\)[\s\S]*?\.homeHero\s*\{[^}]*height:\s*min\(400px,\s*72svh\)/);
-  assert.match(css, /@media \(min-width: 801px\) and \(max-width: 1100px\)[\s\S]*?\.homeHero\s*\{[^}]*height:\s*min\(360px,\s*68svh\)/);
-  assert.match(css, /@media \(max-width: 800px\)[\s\S]*?\.homeHero\s*\{[^}]*height:\s*min\(320px,\s*100svh\)/);
+  assert.match(css, /@media \(min-width: 1101px\)[\s\S]*?\.homeHero\s*\{[^}]*height:\s*min\(560px,\s*78svh\)/);
+  assert.match(css, /@media \(min-width: 801px\) and \(max-width: 1100px\)[\s\S]*?\.homeHero\s*\{[^}]*height:\s*min\(480px,\s*74svh\)/);
+  assert.match(css, /@media \(max-width: 800px\)[\s\S]*?\.homeHero\s*\{[^}]*height:\s*min\(430px,\s*100svh\)/);
 });
 
-test("hero content does not keep a large top gap at any breakpoint", async () => {
+test("hero content keeps the desktop header, message, and action visually separated", async () => {
   const css = await (await import("node:fs/promises")).readFile(new URL("../app/design-corrections.css", import.meta.url), "utf8");
-  assert.match(css, /@media \(min-width: 1101px\)[\s\S]*?\.homeHero \.heroContent\s*\{[^}]*padding-top:\s*clamp\(28px,\s*8svh,\s*96px\)/);
-  assert.match(css, /@media \(min-width: 801px\) and \(max-width: 1100px\)[\s\S]*?\.homeHero \.heroContent\s*\{[^}]*padding-top:\s*clamp\(24px,\s*7svh,\s*72px\)/);
+  assert.match(css, /@media \(min-width: 1101px\)[\s\S]*?\.homeHero \.heroContent\s*\{[^}]*padding-top:\s*clamp\(118px,\s*18svh,\s*142px\)/);
+  assert.match(css, /@media \(min-width: 801px\) and \(max-width: 1100px\)[\s\S]*?\.homeHero \.heroContent\s*\{[^}]*padding-top:\s*clamp\(108px,\s*17svh,\s*128px\)/);
+  assert.match(css, /@media \(min-width: 801px\) and \(max-width: 1100px\)[\s\S]*?\.homeHero \.heroActions\s*\{[^}]*margin-top:\s*26px/);
   assert.match(css, /@media \(max-width: 800px\)[\s\S]*?\.homeHero \.heroContent\s*\{[^}]*padding-top:\s*clamp\(18px,\s*5svh,\s*32px\)/);
 });
 
@@ -79,6 +81,7 @@ test("panorama has no decorative white transition overlays", async () => {
   assert.match(css, /\.panoramaNote::after\s*\{[^}]*content:\s*none\s*!important;[^}]*display:\s*none\s*!important;/s);
   assert.match(css, /\.homePanorama \.closingShade\s*\{[^}]*linear-gradient\(/s);
   assert.match(css, /\.footer\s*\{[^}]*box-shadow:\s*0 -14px 30px/s);
+  assert.match(css, /\.homePanorama\s*\{[^}]*height:\s*clamp\(390px,\s*33\.34vw,\s*520px\)/s);
 });
 
 test("header booking button uses the same brush treatment as hero CTA", async () => {
@@ -121,6 +124,8 @@ test("experience cards keep the portrait two-column reference geometry", async (
   assert.match(css, /@media \(max-width: 800px\)[\s\S]*?\.homeCards \.experienceCard\s*\{[^}]*aspect-ratio:\s*0\.74\s*\/\s*1;/s);
   assert.match(css, /\.homeCards \.experienceContent h3\s*\{[^}]*display:\s*block/s);
   assert.match(css, /\.homeCards \.textLink\s*\{[^}]*display:\s*none/s);
+  assert.match(css, /\.homeCards \.cardShade\s*\{[^}]*rgba\(10, 17, 14, 0\.28\)[^}]*transparent 82%[^}]*rgba\(10, 17, 14, 0\.16\)/s);
+  assert.match(css, /\.homeCards \.experienceCard:hover img\s*\{[^}]*scale\(1\.015\)/s);
   assert.match(css, /\.homeCards \.experienceCardLink\s*\{[^}]*inset:\s*0;[^}]*overflow:\s*hidden/s);
   assert.match(css, /@media \(max-width: 600px\)[\s\S]*?\.homeCards \.experienceGrid\s*\{[^}]*grid-template-columns:\s*1fr/s);
 });
@@ -159,11 +164,115 @@ test("experience card frame is shared across every breakpoint", async () => {
   const legacyCss = await fs.readFile(new URL("../app/pixel-perfect.css", import.meta.url), "utf8");
   assert.match(css, /\.homeCards \.experienceCard\s*\{[^}]*padding:\s*0;[^}]*border:\s*0;[^}]*border-radius:\s*10px;[^}]*background:\s*transparent;[^}]*overflow:\s*hidden;[^}]*clip-path:\s*none/s);
   assert.match(css, /\.homeCards \.experienceCard\s*\{[^}]*box-shadow:[^}]*0 12px 28px/s);
-  assert.match(css, /\.homeCards \.experienceCard:hover\s*\{[^}]*translateY\(-3px\);[^}]*0 18px 38px/s);
-  assert.match(css, /\.homeCards \.experienceContent::before\s*\{[^}]*background:\s*rgba\(18, 29, 25, 0\.82\);[^}]*manifesto-brush\.png/s);
+  assert.match(css, /\.homeCards \.experienceCard:hover\s*\{[^}]*translateY\(-2px\);[^}]*0 18px 38px/s);
+  assert.match(css, /\.homeCards \.experienceContent::before\s*\{[^}]*inset:\s*-16px -38px -18px;[^}]*background:\s*rgba\(18, 29, 25, 0\.82\);[^}]*manifesto-brush\.png/s);
   assert.doesNotMatch(css, /\.homeCards \.experienceCard\s*\{[^}]*border:\s*[678]px/si);
   assert.match(css, /\.homeCards \.experienceCard::before\s*\{[^}]*content:\s*none;[^}]*display:\s*none;/s);
   assert.match(css, /\.homeCards \.experienceCardLink\s*\{[^}]*inset:\s*0;[^}]*overflow:\s*hidden/s);
   assert.doesNotMatch(legacyCss, /\.homeCards \.experienceCard\s*\{[^}]*border:/s);
   assert.doesNotMatch(legacyCss, /\.homeCards \.experienceCard\s*\{[^}]*clip-path:/s);
+});
+
+test("inner heroes use the shared three-font type system", async () => {
+  const css = await (await import("node:fs/promises")).readFile(new URL("../app/design-corrections.css", import.meta.url), "utf8");
+  assert.match(css, /\.innerHero h1\s*\{[^}]*font-family:\s*var\(--font-condensed\);[^}]*font-style:\s*normal;[^}]*text-transform:\s*uppercase/s);
+  assert.match(css, /\.innerHero h1 em\s*\{[^}]*font-family:\s*var\(--font-script\);[^}]*font-style:\s*normal;[^}]*text-transform:\s*none/s);
+  assert.match(css, /\.innerHeroContent > p\s*\{[^}]*font-family:\s*var\(--font-sans\)/s);
+});
+
+test("contacts page embeds the confirmed Yandex map point", async () => {
+  const page = await (await import("node:fs/promises")).readFile(new URL("../app/contacts/page.tsx", import.meta.url), "utf8");
+  assert.match(page, /yandex\.ru\/map-widget\/v1\/\?ll=35\.995277%2C56\.846352/);
+  assert.match(page, /pt=35\.995277%2C56\.846352/);
+  assert.match(page, /Открыть в Яндекс Картах/);
+  assert.doesNotMatch(page, /Точная точка появится после подтверждения адреса/);
+});
+
+test("booking CTAs share the configurable YCLIENTS destination", async () => {
+  const fs = await import("node:fs/promises");
+  const files = await Promise.all([
+    "../app/page.tsx",
+    "../app/cafe/page.tsx",
+    "../app/bathhouse/page.tsx",
+    "../app/contacts/page.tsx",
+    "../components/Header.tsx",
+    "../components/BookingBand.tsx",
+  ].map((file) => fs.readFile(new URL(file, import.meta.url), "utf8")));
+  assert.ok(files.every((file) => file.includes("site.bookingUrl")));
+  const siteConfig = await fs.readFile(new URL("../lib/site.ts", import.meta.url), "utf8");
+  assert.match(siteConfig, /NEXT_PUBLIC_YCLIENTS_URL\s*\|\|\s*"https:\/\/yclients\.com"/);
+  assert.match(siteConfig, /ctaHref:\s*site\.bookingUrl/);
+});
+
+test("contacts page uses the image-led booking layout instead of the mail form", async () => {
+  const page = await (await import("node:fs/promises")).readFile(new URL("../app/contacts/page.tsx", import.meta.url), "utf8");
+  assert.match(page, /contactsVisualHero/);
+  assert.match(page, /contactBookingCard/);
+  assert.doesNotMatch(page, /<form|bookingForm/);
+});
+
+test("navigation stays fixed and switches to a glass background after scrolling", async () => {
+  const fs = await import("node:fs/promises");
+  const [header, css] = await Promise.all([
+    fs.readFile(new URL("../components/Header.tsx", import.meta.url), "utf8"),
+    fs.readFile(new URL("../app/design-corrections.css", import.meta.url), "utf8"),
+  ]);
+  assert.match(header, /window\.scrollY > 18/);
+  assert.match(header, /siteHeaderScrolled/);
+  assert.match(css, /\.siteHeader\s*\{[^}]*position:\s*fixed;[^}]*z-index:\s*50;[^}]*height:\s*96px/s);
+  assert.match(css, /\.siteHeaderScrolled\s*\{[^}]*backdrop-filter:\s*blur\(12px\)/s);
+  assert.match(css, /@media \(max-width: 800px\)[\s\S]*?\.siteHeader\s*\{[^}]*height:\s*76px/s);
+  assert.match(css, /@media \(max-width: 800px\)[\s\S]*?\.siteHeader \.logoArtwork\s*\{[^}]*width:\s*100px;[^}]*height:\s*52px;[^}]*object-fit:\s*contain/s);
+});
+
+test("inner content cards keep rounded elevated frames", async () => {
+  const css = await (await import("node:fs/promises")).readFile(new URL("../app/design-corrections.css", import.meta.url), "utf8");
+  assert.match(css, /\.menuPreview\s*\{[^}]*overflow:\s*hidden;[^}]*border-radius:\s*12px;[^}]*box-shadow:/s);
+  assert.match(css, /\.ritualPhoto\s*\{[^}]*overflow:\s*hidden;[^}]*border-radius:\s*12px;[^}]*box-shadow:/s);
+});
+
+test("footer social links point to the confirmed venue profiles", async () => {
+  const footer = await (await import("node:fs/promises")).readFile(new URL("../components/Footer.tsx", import.meta.url), "utf8");
+  assert.match(footer, /https:\/\/vk\.ru\/tverplazh/);
+  assert.match(footer, /https:\/\/www\.instagram\.com\/tverplazh\//);
+});
+
+test("confirmed venue contact details replace placeholder data", async () => {
+  const fs = await import("node:fs/promises");
+  const [siteConfig, contacts, jsonLd] = await Promise.all([
+    fs.readFile(new URL("../lib/site.ts", import.meta.url), "utf8"),
+    fs.readFile(new URL("../app/contacts/page.tsx", import.meta.url), "utf8"),
+    fs.readFile(new URL("../components/JsonLd.tsx", import.meta.url), "utf8"),
+  ]);
+  assert.match(siteConfig, /\+7 \(967\) 777-37-71/);
+  assert.match(siteConfig, /tel:\+79677773771/);
+  assert.match(siteConfig, /Константиновский карьер, центральный пляж/);
+  assert.doesNotMatch(siteConfig, /900|123-45-67|hello@/);
+  assert.doesNotMatch(contacts, /mailto:|макетные данные/);
+  assert.doesNotMatch(jsonLd, /email:/);
+});
+
+test("contacts hero uses the cache-busted beach panorama", async () => {
+  const page = await (await import("node:fs/promises")).readFile(new URL("../app/contacts/page.tsx", import.meta.url), "utf8");
+  assert.match(page, /\/images\/beach-panorama-2026\.webp/);
+  assert.doesNotMatch(page, /src="\/images\/beach-panorama\.webp"/);
+});
+
+test("desktop footer contact details remain readable", async () => {
+  const css = await (await import("node:fs/promises")).readFile(new URL("../app/design-corrections.css", import.meta.url), "utf8");
+  assert.match(css, /@media \(min-width: 801px\)[\s\S]*?\.footerContacts\s*\{[^}]*font-size:\s*12px;[^}]*line-height:\s*1\.35/s);
+});
+
+test("tablet layout uses a burger before the full header can overflow", async () => {
+  const css = await (await import("node:fs/promises")).readFile(new URL("../app/design-corrections.css", import.meta.url), "utf8");
+  assert.match(css, /\.homeHero\s*\{[^}]*width:\s*100%;[^}]*max-width:\s*none/s);
+  assert.match(css, /@media \(min-width: 801px\) and \(max-width: 1100px\)[\s\S]*?\.siteHeader \.desktopNav,[\s\S]*?\.siteHeader \.headerBooking\s*\{[^}]*display:\s*none/s);
+  assert.match(css, /@media \(min-width: 801px\) and \(max-width: 1100px\)[\s\S]*?\.siteHeader \.mobileMenu\s*\{[^}]*display:\s*block/s);
+  assert.match(css, /@media \(min-width: 801px\) and \(max-width: 1100px\)[\s\S]*?\.contactGridDesigned\s*\{[^}]*grid-template-columns:\s*minmax\(0, 1fr\)/s);
+  assert.match(css, /@media \(min-width: 801px\) and \(max-width: 1100px\)[\s\S]*?\.footerContacts\s*\{[^}]*flex-wrap:\s*wrap/s);
+});
+
+test("contact icons keep a consistent fixed size beside long text", async () => {
+  const css = await (await import("node:fs/promises")).readFile(new URL("../app/design-corrections.css", import.meta.url), "utf8");
+  assert.match(css, /\.contactGridDesigned \.contactPanel > a > svg,[\s\S]*?\.contactGridDesigned \.contactPanel > div > svg\s*\{[^}]*flex:\s*0 0 24px;[^}]*width:\s*24px;[^}]*height:\s*24px/s);
 });

@@ -1,11 +1,11 @@
 export const site = {
   name: "Карьер",
   descriptor: "кафе у воды",
-  phoneLabel: "+7 (900) 123-45-67",
-  phoneHref: "tel:+79001234567",
-  address: "Константиновский карьер, Тверь",
+  phoneLabel: "+7 (967) 777-37-71",
+  phoneHref: "tel:+79677773771",
+  address: "Тверь, Константиновский карьер, центральный пляж",
   hours: "Ежедневно с 10:00 до 22:00",
-  email: "hello@karier-tver.ru",
+  bookingUrl: process.env.NEXT_PUBLIC_YCLIENTS_URL || "https://yclients.com",
 } as const;
 
 export const navigation = [
@@ -32,6 +32,6 @@ export const experiences = [
     description: "Пар, отдых, перезагрузка.",
     image: "/images/karier-real-bathhouse.png",
     cta: "Забронировать",
-    ctaHref: "/contacts",
+    ctaHref: site.bookingUrl,
   },
 ] as const;

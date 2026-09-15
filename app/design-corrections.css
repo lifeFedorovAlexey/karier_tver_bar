@@ -268,37 +268,199 @@
   }
 }
 
+/* Persistent navigation: full controls on desktop, burger-only navigation on phones. */
+.siteHeader {
+  position: fixed;
+  z-index: 50;
+  inset: 0 0 auto;
+  width: 100%;
+  height: 96px;
+  color: #fff;
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background-color 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+}
+.siteHeaderScrolled {
+  background: rgba(14, 27, 22, 0.9);
+  border-bottom-color: rgba(255, 255, 255, 0.11);
+  box-shadow: 0 9px 28px rgba(7, 15, 12, 0.2);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+.siteHeader .logoArtwork {
+  filter: none;
+}
+
+.homeHero {
+  width: 100%;
+  max-width: none;
+}
+
+@media (min-width: 801px) and (max-width: 1100px) {
+  .siteHeader .headerInner {
+    width: calc(100% - 48px);
+  }
+  .siteHeader .logo {
+    min-width: 0;
+    margin: 0;
+    transform: none;
+  }
+  .siteHeader .desktopNav,
+  .siteHeader .phoneLink,
+  .siteHeader .headerBooking {
+    display: none;
+  }
+  .siteHeader .mobileMenu {
+    display: block;
+    position: relative;
+  }
+  .siteHeader .mobileMenu summary {
+    list-style: none;
+    width: 44px;
+    height: 44px;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    display: grid;
+    place-content: center;
+    gap: 4px;
+    cursor: pointer;
+  }
+  .siteHeader .mobileMenu summary::-webkit-details-marker {
+    display: none;
+  }
+  .siteHeader .mobileMenu summary span {
+    display: block;
+    width: 17px;
+    height: 1px;
+    background: currentColor;
+  }
+  .siteHeader .mobileMenu nav {
+    position: absolute;
+    top: 52px;
+    right: 0;
+    width: 230px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    color: #fff;
+    background: rgba(14, 27, 22, 0.97);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+  }
+  .contactGridDesigned {
+    grid-template-columns: minmax(0, 1fr);
+    width: calc(100% - 48px);
+  }
+  .contactGridDesigned .contactPanel,
+  .contactBookingCard {
+    padding: 52px 44px;
+  }
+  .footerMain {
+    min-height: 0;
+    padding-block: 34px;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+  .footerBrand {
+    margin-right: 0;
+  }
+  .footerContacts {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    white-space: normal;
+  }
+  .footerContacts > * {
+    white-space: normal;
+  }
+}
+
+@media (max-width: 800px) {
+  .siteHeader {
+    height: 76px;
+  }
+  .siteHeader .logo {
+    min-width: 0;
+  }
+  .siteHeader .logoArtwork {
+    width: 100px;
+    height: 52px;
+    object-fit: contain;
+  }
+  .siteHeader .mobileMenu nav {
+    top: 46px;
+    background: rgba(14, 27, 22, 0.97);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+  }
+}
+
 /* Keep the hero compact at every breakpoint; never reserve a full viewport. */
 @media (min-width: 1101px) {
   .homeHero {
-    height: min(400px, 72svh);
+    height: min(560px, 78svh);
     min-height: 0;
   }
   .homeHero .heroContent {
-    padding-top: clamp(28px, 8svh, 96px);
+    padding-top: clamp(118px, 18svh, 142px);
+    padding-left: clamp(38px, 4vw, 62px);
     padding-bottom: 0;
+  }
+  .homeHero .heroActions {
+    margin-top: 28px;
+  }
+  .homeHero .heroActions .button {
+    min-width: 260px;
+    min-height: 54px;
+    padding-inline: 30px;
+    font-size: 12px;
   }
 }
 
 @media (min-width: 801px) and (max-width: 1100px) {
   .homeHero {
-    height: min(360px, 68svh);
+    height: min(480px, 74svh);
     min-height: 0;
   }
   .homeHero .heroContent {
-    padding-top: clamp(24px, 7svh, 72px);
+    padding-top: clamp(108px, 17svh, 128px);
+    padding-left: clamp(32px, 4vw, 48px);
     padding-bottom: 0;
+  }
+  .homeHero .heroTitle {
+    width: 310px;
+  }
+  .homeHero .heroActions {
+    margin-top: 26px;
+  }
+  .homeHero .heroActions .button {
+    min-width: 250px;
+    min-height: 52px;
+    padding-inline: 28px;
+    font-size: 12px;
   }
 }
 
 @media (max-width: 800px) {
   .homeHero {
-    height: min(320px, 100svh);
+    height: min(430px, 100svh);
     min-height: 0;
   }
   .homeHero .heroContent {
     padding-top: clamp(18px, 5svh, 32px);
     padding-bottom: 0;
+  }
+  .homeHero .heroActions .button {
+    width: 228px;
+    min-width: 228px;
+    min-height: 48px;
   }
 }
 
@@ -571,7 +733,7 @@
   transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 .homeCards .experienceCard:hover {
-  transform: translateY(-3px);
+  transform: translateY(-2px);
   box-shadow:
     0 4px 8px rgba(18, 27, 23, 0.14),
     0 18px 38px rgba(18, 27, 23, 0.24);
@@ -595,7 +757,12 @@
   aspect-ratio: 1.1 / 1;
 }
 .homeCards .cardShade {
-  background: linear-gradient(90deg, rgba(10, 17, 14, 0.72), rgba(10, 17, 14, 0.08) 78%);
+  background:
+    linear-gradient(90deg, rgba(10, 17, 14, 0.28), rgba(10, 17, 14, 0.08) 58%, transparent 82%),
+    linear-gradient(0deg, rgba(10, 17, 14, 0.16), transparent 48%);
+}
+.homeCards .experienceCard:hover img {
+  transform: scale(1.015);
 }
 .homeCards .experienceContent {
   top: clamp(54px, 8vw, 112px);
@@ -609,7 +776,7 @@
   content: "";
   position: absolute;
   z-index: -1;
-  inset: -7px -12px;
+  inset: -16px -38px -18px;
   background: rgba(18, 29, 25, 0.82);
   -webkit-mask: url("/images/manifesto-brush.png") center / 100% 100% no-repeat;
   mask: url("/images/manifesto-brush.png") center / 100% 100% no-repeat;
@@ -794,6 +961,30 @@
 }
 
 @media (min-width: 801px) {
+  .footerContacts {
+    gap: 24px;
+    font-size: 12px;
+    line-height: 1.35;
+  }
+  .footerContacts > * {
+    gap: 9px;
+  }
+  .footerContacts > * > svg {
+    width: 19px;
+    height: 19px;
+  }
+}
+
+@media (min-width: 801px) {
+  .homePanorama {
+    height: clamp(390px, 33.34vw, 520px);
+  }
+  .homePanorama > img {
+    object-position: center center;
+  }
+}
+
+@media (min-width: 801px) {
   .homeManifesto {
     min-height: 148px;
     padding-top: 36px;
@@ -860,5 +1051,269 @@
     grid-column: 1;
     justify-self: center;
     text-align: center;
+  }
+}
+
+/* Shared inner-page type system: condensed structure, handwritten emotion, sans copy. */
+.innerHero h1 {
+  max-width: 1040px;
+  margin: 22px 0 26px;
+  font-family: var(--font-condensed);
+  font-size: clamp(58px, 7vw, 102px);
+  font-style: normal;
+  font-weight: 600;
+  line-height: 0.86;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+}
+.innerHero h1 em {
+  display: inline-block;
+  margin-top: 0.08em;
+  color: #fff;
+  font-family: var(--font-script);
+  font-size: 0.92em;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 0.82;
+  letter-spacing: -0.035em;
+  text-transform: none;
+  transform: rotate(-2deg);
+  transform-origin: left center;
+}
+.innerHeroContent > p {
+  max-width: 620px;
+  margin: 0 0 28px;
+  font-family: var(--font-sans);
+  font-size: clamp(16px, 1.55vw, 21px);
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+}
+
+@media (max-width: 800px) {
+  .innerHero h1 {
+    margin-block: 18px 22px;
+    font-size: clamp(48px, 12vw, 72px);
+    line-height: 0.88;
+  }
+  .innerHero h1 em {
+    font-size: 0.84em;
+  }
+  .innerHeroContent > p {
+    font-size: clamp(15px, 4vw, 18px);
+  }
+}
+
+.mapSection {
+  position: relative;
+  height: 440px;
+  overflow: hidden;
+  background: #d9d2c3;
+}
+.mapSection iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.mapLink {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  bottom: 28px;
+  min-height: 46px;
+  padding: 0 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #fff;
+  background: var(--ink);
+  border-radius: 999px;
+  box-shadow: 0 10px 28px rgba(15, 25, 21, 0.3);
+  font-family: var(--font-condensed);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transform: translateX(-50%);
+}
+
+@media (max-width: 800px) {
+  .mapSection {
+    height: 360px;
+  }
+  .mapLink {
+    bottom: 20px;
+    width: max-content;
+    max-width: calc(100% - 32px);
+  }
+}
+
+.contentGallery {
+  height: 560px;
+  margin-bottom: 60px;
+  display: grid;
+  grid-template-columns: 1.45fr 0.75fr;
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+.contentGallery figure {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 10px 26px rgba(18, 27, 23, 0.14);
+}
+.contentGallery figure:first-child {
+  grid-row: 1 / -1;
+}
+.contentGallery img {
+  transition: transform 0.55s ease;
+}
+.contentGallery figure:hover img {
+  transform: scale(1.025);
+}
+
+@media (max-width: 700px) {
+  .contentGallery {
+    height: auto;
+    margin-bottom: 44px;
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    gap: 10px;
+  }
+  .contentGallery figure,
+  .contentGallery figure:first-child {
+    grid-row: auto;
+    aspect-ratio: 4 / 3;
+  }
+}
+
+/* Contacts follow the same image-led, brush-accented visual language as the main pages. */
+.contactsVisualHero {
+  height: min(520px, 76svh);
+  min-height: 460px;
+}
+.contactsVisualHero > img {
+  object-position: center 58%;
+}
+.contactsVisualHero .innerHeroContent {
+  justify-content: center;
+}
+.contactGridDesigned {
+  margin-block: 64px;
+  gap: 18px;
+  background: transparent;
+}
+.contactGridDesigned .contactPanel,
+.contactBookingCard {
+  border-radius: 10px;
+  box-shadow: 0 14px 34px rgba(18, 27, 23, 0.15);
+}
+.contactGridDesigned .contactPanel {
+  background: #eee5d7;
+}
+.contactGridDesigned .contactPanel > .eyebrow {
+  margin-bottom: 18px;
+}
+.contactGridDesigned .contactPanel > a > svg,
+.contactGridDesigned .contactPanel > div > svg {
+  flex: 0 0 24px;
+  width: 24px;
+  height: 24px;
+}
+.contactGridDesigned .contactPanel > a > span,
+.contactGridDesigned .contactPanel > div > span {
+  min-width: 0;
+}
+.contactBookingCard {
+  padding: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: hidden;
+  color: #fff;
+  background: var(--ink);
+}
+.contactBookingCard h2 {
+  margin: 20px 0 26px;
+  font-family: var(--font-condensed);
+  font-size: clamp(48px, 5vw, 70px);
+  font-weight: 600;
+  line-height: 0.86;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+}
+.contactBookingCard h2 em {
+  display: inline-block;
+  color: var(--cream);
+  font-family: var(--font-script);
+  font-size: 0.9em;
+  font-style: normal;
+  font-weight: 400;
+  text-transform: none;
+  transform: rotate(-3deg);
+}
+.contactBookingCard > p {
+  max-width: 390px;
+  margin: 0 0 30px;
+  font-size: 15px;
+  line-height: 1.55;
+  opacity: 0.78;
+}
+.contactBookingCard > small {
+  margin-top: 18px;
+  font-size: 10px;
+  opacity: 0.48;
+}
+
+/* Interior content cards use the same soft frame as the homepage cards. */
+.menuPreview {
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 14px 34px rgba(18, 27, 23, 0.14);
+}
+.ritualPhoto {
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 14px 34px rgba(18, 27, 23, 0.14);
+}
+
+@media (max-width: 800px) {
+  .menuPreview,
+  .ritualPhoto {
+    border-radius: 10px;
+  }
+}
+
+@media (max-width: 800px) {
+  .contactsVisualHero {
+    height: 500px;
+    min-height: 500px;
+  }
+  .contactsVisualHero .innerHeroContent {
+    justify-content: flex-end;
+    padding-bottom: 54px;
+  }
+  .contactGridDesigned {
+    margin-block: 36px;
+    gap: 12px;
+  }
+  .contactGridDesigned .contactPanel,
+  .contactBookingCard {
+    padding: 38px 25px;
+  }
+  .contactBookingCard h2 {
+    font-size: clamp(44px, 13vw, 60px);
+  }
+}
+
+@media (min-width: 801px) and (max-width: 1100px) {
+  .contactGridDesigned .contactPanel,
+  .contactBookingCard {
+    padding: 52px 44px;
   }
 }

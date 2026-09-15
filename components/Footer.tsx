@@ -17,7 +17,7 @@ export function Footer() {
           <div className="footerSocials" aria-label="Социальные сети">
             <a className="footerSocial" href="https://vk.ru/tverplazh" target="_blank" rel="noreferrer" aria-label="Карьер во ВКонтакте"><BiLogoVk aria-hidden="true" /></a>
             <a className="footerSocial footerTelegram" href="https://t.me/" target="_blank" rel="noreferrer" aria-label="Карьер в Telegram"><FaTelegramPlane aria-hidden="true" /></a>
-            <a className="footerSocial" href="https://instagram.com/" target="_blank" rel="noreferrer" aria-label="Карьер в Instagram"><SiInstagram aria-hidden="true" /></a>
+            <a className="footerSocial" href="https://www.instagram.com/tverplazh/" target="_blank" rel="noreferrer" aria-label="Карьер в Instagram"><SiInstagram aria-hidden="true" /></a>
           </div>
         </div>
       </div>

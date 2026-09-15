@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import Image from "next/image";
+import { ButtonLink } from "@/components/ButtonLink";
 import { Header } from "@/components/Header";
 import { ClockIcon, PinIcon, PhoneIcon } from "@/components/icons";
 import { site } from "@/lib/site";
@@ -6,9 +8,19 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = { title: "Контакты", description: "Адрес, часы работы и бронирование кафе и бани «Карьер» в Твери.", alternates: { canonical: "/contacts" } };
 
 export default function ContactsPage() {
-  return <main><Header/><section className="contactsHero pageWidth"><span className="eyebrow">Будем рады видеть</span><h1>Встретимся<br /><em>у воды</em></h1><p>Напишите или позвоните — поможем выбрать столик, время для бани и ответим на вопросы.</p></section>
-    <section className="contactGrid pageWidth"><div className="contactPanel"><a href={site.phoneHref}><PhoneIcon/><span><small>Телефон</small><b>{site.phoneLabel}</b></span></a><div><PinIcon/><span><small>Адрес</small><b>{site.address}</b></span></div><div><ClockIcon/><span><small>Режим работы</small><b>{site.hours}</b></span></div><a href={`mailto:${site.email}`}><span className="atIcon">@</span><span><small>Почта</small><b>{site.email}</b></span></a><p className="dataNotice">Телефон, адрес на карте и почта сейчас используются как макетные данные — заменим после подтверждения.</p></div>
-    <form className="bookingForm" action={`mailto:${site.email}`} method="post" encType="text/plain"><span className="eyebrow">Заявка</span><h2>Оставьте контакты</h2><label>Как к вам обращаться<input name="name" autoComplete="name" required placeholder="Ваше имя"/></label><label>Телефон<input name="phone" type="tel" autoComplete="tel" required placeholder="+7 900 000-00-00"/></label><label>Что хотите забронировать<select name="type" defaultValue=""><option value="" disabled>Выберите вариант</option><option>Столик в кафе</option><option>Баню</option><option>Хочу уточнить</option></select></label><label>Комментарий<textarea name="comment" rows={3} placeholder="Желаемые дата и время"/></label><button className="button button-dark" type="submit">Отправить заявку <span>→</span></button><small>Нажимая кнопку, вы соглашаетесь на обработку персональных данных.</small></form></section>
-    <section className="mapPlaceholder"><div><PinIcon size={34}/><b>Константиновский карьер</b><span>Точная точка появится после подтверждения адреса</span></div></section>
+  return <main className="contactsPage"><section className="innerHero contactsVisualHero"><Image src="/images/beach-panorama-2026.webp" alt="Центральный пляж Константиновского карьера" fill priority sizes="100vw"/><div className="heroShade"/><Header overlay/><div className="innerHeroContent pageWidth"><span className="eyebrow light">Будем рады видеть</span><h1>Встретимся<br/><em>у воды</em></h1><p>Кафе, баня и спокойный отдых<br/>в нескольких минутах от Твери.</p></div></section>
+    <section className="contactGrid contactGridDesigned pageWidth"><div className="contactPanel"><span className="eyebrow">Контакты</span><a href={site.phoneHref}><PhoneIcon/><span><small>Телефон</small><b>{site.phoneLabel}</b></span></a><div><PinIcon/><span><small>Адрес</small><b>{site.address}</b></span></div><div><ClockIcon/><span><small>Режим работы</small><b>{site.hours}</b></span></div></div>
+    <div className="contactBookingCard"><span className="eyebrow light">Онлайн-запись</span><h2>Выберите<br/><em>свой отдых</em></h2><p>Забронируйте столик или удобное время для бани через сервис YCLIENTS.</p><ButtonLink href={site.bookingUrl}>Перейти к записи</ButtonLink><small>Ссылка временная — заменим на прямую страницу записи.</small></div></section>
+    <section className="mapSection" aria-label="Расположение на карте">
+      <iframe
+        src="https://yandex.ru/map-widget/v1/?ll=35.995277%2C56.846352&z=16&pt=35.995277%2C56.846352%2Cpm2rdm"
+        title="Карьер на Яндекс Картах"
+        loading="lazy"
+        allowFullScreen
+      />
+      <a className="mapLink" href="https://yandex.ru/maps/?ll=35.995277%2C56.846352&mode=whatshere&whatshere%5Bpoint%5D=35.995277%2C56.846352&whatshere%5Bzoom%5D=16&z=16" target="_blank" rel="noreferrer">
+        <PinIcon size={18} /> Открыть в Яндекс Картах
+      </a>
+    </section>
   </main>;
 }
