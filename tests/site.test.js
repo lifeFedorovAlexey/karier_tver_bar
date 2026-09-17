@@ -37,7 +37,7 @@ test("страница проката содержит зимний и летн�
   assert.match(seasons, /Детский тариф — до 12 лет включительно/);
   assert.match(seasons, /Лёд включён · размеры 30–47/);
   assert.match(seasons, /Со своими коньками · без ограничения по времени/);
-  assert.match(seasons, /className="rentalIceNotice"[\s\S]*При аренде коньков — лёд бесплатный\.[\s\S]*Аренда льда без ограничений по времени\./);
+  assert.match(seasons, /title: "Электросноуборд"[\s\S]*notice:[\s\S]*При аренде коньков — лёд бесплатный\.[\s\S]*Аренда льда без ограничений по времени\./);
 });
 
 test("homepage uses the requested bathhouse artwork", async () => {
