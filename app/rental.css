@@ -46,7 +46,7 @@
   margin: 14px 0 8px;
   font-family: var(--font-condensed);
   font-size: clamp(90px, 12vw, 160px);
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: -0.06em;
   line-height: 0.82;
   text-transform: uppercase;
@@ -109,7 +109,7 @@
   margin: 14px 0 0;
   font-family: var(--font-condensed);
   font-size: clamp(48px, 5.6vw, 74px);
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: -0.04em;
   line-height: 0.88;
   text-transform: uppercase;
@@ -142,28 +142,11 @@
   background: #e8e1d4;
 }
 
-.rentalCardTopline {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  color: rgba(21, 32, 28, 0.46);
-  font-family: var(--font-condensed);
-  font-size: 11px;
-  font-style: normal;
-  letter-spacing: 0.14em;
-}
-
-.rentalCardTopline i {
-  height: 1px;
-  flex: 1;
-  background: currentColor;
-}
-
 .rentalPriceCard h3 {
-  margin: 20px 0 19px;
+  margin: 0 0 19px;
   font-family: var(--font-condensed);
   font-size: clamp(32px, 3.8vw, 48px);
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: -0.035em;
   line-height: 0.92;
   text-transform: uppercase;
@@ -208,10 +191,6 @@
   color: #fff;
 }
 
-.rentalPriceCardFeatured .rentalCardTopline {
-  color: rgba(255, 255, 255, 0.42);
-}
-
 .rentalPriceCardFeatured .rentalPriceRows,
 .rentalPriceCardFeatured .rentalPriceRow {
   border-color: rgba(255, 255, 255, 0.18);
@@ -225,6 +204,15 @@
 .rentalPriceCardFeatured .rentalPriceRow b {
   color: var(--cream);
   font-size: 30px;
+}
+
+.rentalIceNotice {
+  display: grid;
+  gap: 4px;
+  margin: 18px 0 0;
+  color: var(--ink);
+  font-size: 13px;
+  line-height: 1.4;
 }
 
 .rentalCardFooter {
@@ -334,6 +322,11 @@
 
   .rentalPriceRow b {
     font-size: 19px;
+  }
+
+  .rentalIceNotice {
+    margin-top: 15px;
+    font-size: 12px;
   }
 
   .rentalContact {

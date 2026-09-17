@@ -54,7 +54,6 @@ const winterPrices: PriceCard[] = [
     title: "Электросноуборд",
     featured: true,
     rows: [{ label: "Катание", price: "от 1 000 ₽" }],
-    footer: "При аренде коньков — лёд бесплатный. Аренда льда без ограничений по времени.",
   },
 ];
 
@@ -112,15 +111,11 @@ const summerPrices: PriceCard[] = [
   },
 ];
 
-function PriceCardView({ card, index }: { card: PriceCard; index: number }) {
+function PriceCardView({ card }: { card: PriceCard }) {
   return (
     <article
       className={`rentalPriceCard${card.featured ? " rentalPriceCardFeatured" : ""}`}
     >
-      <div className="rentalCardTopline">
-        <span>0{index + 1}</span>
-        <i aria-hidden="true" />
-      </div>
       <h3>{card.title}</h3>
       <div className="rentalPriceRows">
         {card.rows.map((row) => (
@@ -215,10 +210,16 @@ export function RentalSeasons() {
         </div>
 
         <div className="rentalPriceGrid">
-          {prices.map((card, index) => (
-            <PriceCardView card={card} index={index} key={card.title} />
+          {prices.map((card) => (
+            <PriceCardView card={card} key={card.title} />
           ))}
         </div>
+        {isWinter && (
+          <p className="rentalIceNotice" role="note">
+            <strong>При аренде коньков — лёд бесплатный.</strong>
+            <strong>Аренда льда без ограничений по времени.</strong>
+          </p>
+        )}
       </section>
 
       <section className="rentalContact pageWidth">

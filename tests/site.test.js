@@ -37,7 +37,7 @@ test("страница проката содержит зимний и летн�
   assert.match(seasons, /Детский тариф — до 12 лет включительно/);
   assert.match(seasons, /Лёд включён · размеры 30–47/);
   assert.match(seasons, /Со своими коньками · без ограничения по времени/);
-  assert.match(seasons, /При аренде коньков — лёд бесплатный\. Аренда льда без ограничений по времени\./);
+  assert.match(seasons, /className="rentalIceNotice"[\s\S]*При аренде коньков — лёд бесплатный\.[\s\S]*Аренда льда без ограничений по времени\./);
 });
 
 test("homepage uses the requested bathhouse artwork", async () => {
@@ -165,6 +165,14 @@ test("hero content keeps the desktop header, message, and action visually separa
   assert.match(
     css,
     /@media \(min-width: 801px\) and \(max-width: 1100px\)[\s\S]*?\.homeHero \.heroActions\s*\{[^}]*margin-top:\s*26px/,
+  );
+  assert.match(
+    css,
+    /@media \(min-width: 1101px\)[\s\S]*?\.homeHero \.heroContent\s*\{[^}]*padding-left:\s*0/,
+  );
+  assert.match(
+    css,
+    /@media \(min-width: 801px\) and \(max-width: 1100px\)[\s\S]*?\.homeHero \.heroContent\s*\{[^}]*padding-left:\s*0/,
   );
   assert.match(
     css,
@@ -666,4 +674,16 @@ test("menu controls use outlined pill buttons without visible arrows", async () 
   ).readFile(new URL("../app/menu/menu.css", import.meta.url), "utf8");
   assert.doesNotMatch(component, /<span aria-hidden="true">[←→]<\/span>/);
   assert.match(css, /\.menuBookControls button\s*\{[^}]*border:\s*1px solid[^}]*border-radius:\s*999px/s);
+});
+
+test("rental price cards do not render decorative number lines", async () => {
+  const component = await (
+    await import("node:fs/promises")
+  ).readFile(new URL("../components/RentalSeasons.tsx", import.meta.url), "utf8");
+  const css = await (
+    await import("node:fs/promises")
+  ).readFile(new URL("../app/rental.css", import.meta.url), "utf8");
+  assert.doesNotMatch(component, /rentalCardTopline|0\{index \+ 1\}/);
+  assert.doesNotMatch(css, /rentalCardTopline/);
+  assert.match(css, /\.rentalPriceCard h3\s*\{[^}]*margin:\s*0 0 19px/s);
 });
