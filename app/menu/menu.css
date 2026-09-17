@@ -5,7 +5,7 @@
 }
 
 .qrMenuHeader {
-  width: min(904px, 100%);
+  width: min(1180px, 100%);
   min-height: 92px;
   margin: 0 auto 20px;
   display: grid;
@@ -23,9 +23,39 @@
 .qrMenuHeader h1 { margin: 0; font-family: var(--font-condensed); font-size: 46px; font-weight: 600; line-height: 1; text-transform: uppercase; }
 .qrMenuBack { justify-self: end; padding: 9px 16px; border: 1px solid currentColor; border-radius: 999px; font-family: var(--font-condensed); font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
 
-.qrMenuPages { width: min(904px, 100%); margin: 0 auto; display: grid; gap: 16px; }
-.qrMenuPage { margin: 0; line-height: 0; overflow: hidden; background: #fff; box-shadow: 0 8px 30px rgba(23, 36, 31, .1); }
-.qrMenuPage img { display: block; width: 100%; height: auto; object-fit: contain; }
+.menuBook { width: min(1180px, 100%); margin: 0 auto; }
+.menuBookStage { position: relative; width: 100%; aspect-ratio: 1808 / 1280; overflow: hidden; background: #fff; box-shadow: 0 12px 34px rgba(23, 36, 31, .14); perspective: 1800px; touch-action: pan-y; outline: none; }
+.menuBookSpread { position: absolute; inset: 0; z-index: 1; display: flex; background: #fff; transform-style: preserve-3d; }
+.menuBookSpread::after { content: ""; position: absolute; z-index: 5; inset: 0 auto 0 50%; width: 1px; background: rgba(23, 36, 31, .13); box-shadow: 1px 0 8px rgba(23, 36, 31, .1); }
+.menuBookSpreadBehind { z-index: 1; }
+.menuBookPage { position: relative; flex: 1 1 50%; min-width: 0; height: 100%; margin: 0; overflow: hidden; background: #fff; line-height: 0; backface-visibility: hidden; }
+.menuBookPage img { object-fit: contain; }
+.menuBookBlank { background: #fdfcf9; }
+.menuBookStationary { position: absolute; top: 0; bottom: 0; z-index: 2; width: 50%; overflow: hidden; }
+.menuBookStationary-next { left: 0; }
+.menuBookStationary-previous { right: 0; }
+.menuBookStationary .menuBookPage { position: absolute; inset: 0; width: 100%; height: 100%; }
+.menuBookStationaryNext { opacity: 0; animation: menuBookStationaryIn .48s ease-out .04s both; }
+.menuBookTurn { position: absolute; top: 0; bottom: 0; z-index: 4; width: 50%; transform-style: preserve-3d; will-change: transform; }
+.menuBookTurn-next { right: 0; transform-origin: left center; animation: menuBookTurnNext .48s cubic-bezier(.35, .08, .24, 1) both; }
+.menuBookTurn-previous { left: 0; transform-origin: right center; animation: menuBookTurnPrevious .48s cubic-bezier(.35, .08, .24, 1) both; }
+.menuBookTurn .menuBookPage { position: absolute; inset: 0; width: 100%; height: 100%; }
+.menuBookTurnFront { z-index: 2; backface-visibility: hidden; }
+.menuBookTurnBack { z-index: 1; transform: rotateY(180deg); backface-visibility: hidden; }
+.menuBookEdge { position: absolute; top: 0; bottom: 0; z-index: 6; width: 18%; padding: 0; border: 0; background: transparent; cursor: pointer; }
+.menuBookEdge:disabled { cursor: default; }
+.menuBookEdge-previous { left: 0; cursor: w-resize; }
+.menuBookEdge-next { right: 0; cursor: e-resize; }
+.menuBookControls { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px; padding: 18px 4px 0; color: var(--ink); font-family: var(--font-condensed); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; }
+.menuBookControls button { min-width: 104px; padding: 10px 16px; border: 1px solid rgba(23, 36, 31, .55); border-radius: 999px; color: inherit; background: transparent; cursor: pointer; font: inherit; letter-spacing: inherit; text-transform: inherit; transition: background-color .2s ease, color .2s ease, opacity .2s ease; }
+.menuBookControls button:first-child { justify-self: start; }
+.menuBookControls button:last-child { justify-self: end; }
+.menuBookControls button:not(:disabled):hover { color: #f7f1e7; background: var(--ink); }
+.menuBookControls button:disabled { cursor: default; opacity: .25; }
+.menuBookControls output { color: rgba(23, 36, 31, .55); font: inherit; }
+@keyframes menuBookTurnNext { from { transform: rotateY(0); } to { transform: rotateY(-180deg); } }
+@keyframes menuBookTurnPrevious { from { transform: rotateY(0); } to { transform: rotateY(180deg); } }
+@keyframes menuBookStationaryIn { from { opacity: 0; } to { opacity: 1; } }
 
 @media (max-width: 600px) {
   .qrMenu { padding: 12px 0 32px; }
@@ -33,6 +63,15 @@
   .qrMenuHeader > div { display: none; }
   .qrMenuHeader .logo svg { width: 42px; }
   .qrMenuHeader .logo strong { font-size: 32px; }
-  .qrMenuPages { gap: 8px; }
-  .qrMenuPage { box-shadow: none; }
+  .menuBook { width: 100%; }
+  .menuBookStage { aspect-ratio: 904 / 1280; box-shadow: none; }
+  .menuBookSpread::after { display: none; }
+  .menuBookPage { flex-basis: 100%; }
+  .menuBookSpread > .menuBookPage:nth-child(2) { display: none; }
+  .menuBookTurn { width: 100%; }
+  .menuBookTurn-next { transform-origin: left center; }
+  .menuBookTurn-previous { transform-origin: right center; }
+  .menuBookControls { padding: 13px 14px 0; }
+  .menuBookControls { gap: 8px; }
+  .menuBookControls button { min-width: 88px; padding-inline: 12px; }
 }

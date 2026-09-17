@@ -5,13 +5,15 @@ export const site = {
   phoneHref: "tel:+79677773771",
   address: "Тверь, Константиновский карьер, центральный пляж",
   hours: "Ежедневно с 10:00 до 22:00",
-  bookingUrl: process.env.NEXT_PUBLIC_YCLIENTS_URL || "https://yclients.com",
+  bookingUrl:
+    process.env.NEXT_PUBLIC_YCLIENTS_URL || "https://n1129088.yclients.ru",
 } as const;
 
 export const navigation = [
   { href: "/", label: "Главная" },
   { href: "/cafe", label: "Кафе" },
   { href: "/bathhouse", label: "Баня" },
+  { href: "/rental", label: "Прокат" },
   { href: "/contacts", label: "Контакты" },
 ] as const;
 

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { Logo } from "@/components/Logo";
+import { MenuBook } from "@/components/MenuBook";
 
 const menuPages = Array.from({ length: 7 }, (_, index) => ({
   src: `/images/source/menu/m${index + 1}.jpg`,
@@ -32,20 +32,7 @@ export default function MenuPage() {
         <Link className="qrMenuBack" href="/cafe">О кафе</Link>
       </header>
 
-      <section className="qrMenuPages" aria-label="Страницы меню">
-        {menuPages.map((page, index) => (
-          <figure className="qrMenuPage" key={page.src}>
-            <Image
-              src={page.src}
-              alt={page.alt}
-              width={904}
-              height={1280}
-              priority={index === 0}
-              sizes="(max-width: 960px) 100vw, 904px"
-            />
-          </figure>
-        ))}
-      </section>
+      <MenuBook pages={menuPages} />
     </main>
   );
 }

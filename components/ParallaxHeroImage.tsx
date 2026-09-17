@@ -3,7 +3,19 @@
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 
-export function ParallaxHeroImage() {
+type ParallaxHeroImageProps = {
+  src: string;
+  alt: string;
+  priority?: boolean;
+  sizes?: string;
+};
+
+export function ParallaxHeroImage({
+  src,
+  alt,
+  priority = true,
+  sizes = "100vw",
+}: ParallaxHeroImageProps) {
   const imageRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
@@ -33,11 +45,11 @@ export function ParallaxHeroImage() {
     <Image
       ref={imageRef}
       className="heroParallaxImage"
-      src="/images/karier-bathhouse-enhanced-4k.png"
-      alt="Кафе и баня «Карьер» на берегу Константиновского карьера"
+      src={src}
+      alt={alt}
       fill
-      priority
-      sizes="100vw"
+      priority={priority}
+      sizes={sizes}
     />
   );
 }

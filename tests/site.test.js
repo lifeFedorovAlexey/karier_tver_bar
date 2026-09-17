@@ -2,15 +2,42 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { navLabels, routes } from "../lib/site.test-data.js";
 
-test("сайт содержит пять уникальных публичных маршрутов", () => {
-  assert.equal(routes.length, 5);
+test("сайт содержит шесть уникальных публичных маршрутов", () => {
+  assert.equal(routes.length, 6);
   assert.equal(new Set(routes).size, routes.length);
   assert.ok(routes.includes("/menu"));
-  assert.deepEqual(navLabels, ["Главная", "Кафе", "Баня", "Контакты"]);
+  assert.ok(routes.includes("/rental"));
+  assert.deepEqual(navLabels, ["Главная", "Кафе", "Баня", "Прокат", "Контакты"]);
 });
 
 test("маршруты используют канонические URL без завершающего слеша", () => {
   assert.ok(routes.every((route) => route === "/" || !route.endsWith("/")));
+});
+
+test("страница проката содержит зимний и летний прайс", async () => {
+  const fs = await import("node:fs/promises");
+  const [page, seasons] = await Promise.all([
+    fs.readFile(new URL("../app/rental/page.tsx", import.meta.url), "utf8"),
+    fs.readFile(
+      new URL("../components/RentalSeasons.tsx", import.meta.url),
+      "utf8",
+    ),
+  ]);
+  assert.match(page, /canonical: "\/rental"/);
+  assert.match(page, /<RentalSeasons \/>/);
+  assert.match(seasons, /useState<Season>\("winter"\)/);
+  assert.match(seasons, /rental-winter-hero-v4\.png/);
+  assert.match(seasons, /beach-panorama-2026\.webp/);
+  assert.match(seasons, /title: "Коньки"/);
+  assert.match(seasons, /title: "Лёд"/);
+  assert.match(seasons, /title: "Лыжи"/);
+  assert.match(seasons, /title: "Электросноуборд"/);
+  assert.match(seasons, /title: "SUP-board"/);
+  assert.match(seasons, /title: "Jet-board"/);
+  assert.match(seasons, /Детский тариф — до 12 лет включительно/);
+  assert.match(seasons, /Лёд включён · размеры 30–47/);
+  assert.match(seasons, /Со своими коньками · без ограничения по времени/);
+  assert.match(seasons, /При аренде коньков — лёд бесплатный\. Аренда льда без ограничений по времени\./);
 });
 
 test("homepage uses the requested bathhouse artwork", async () => {
@@ -23,11 +50,33 @@ test("homepage uses the requested bathhouse artwork", async () => {
     new URL("../components/ParallaxHeroImage.tsx", import.meta.url),
     "utf8",
   );
-  assert.match(page, /<ParallaxHeroImage \/>/);
-  assert.match(hero, /src="\/images\/karier-bathhouse-enhanced-4k\.png"/);
+  assert.match(page, /<ParallaxHeroImage[\s\S]*src="\/images\/karier-bathhouse-enhanced-4k\.png"/);
+  assert.match(page, /className="heroTitleArtwork"[\s\S]*src="\/images\/hero-title\.png"/);
+  assert.match(hero, /src=\{src\}/);
   assert.match(hero, /window\.scrollY \* 0\.12/);
   assert.doesNotMatch(page, /src="\/images\/karier-real-hero\.png"/);
   assert.match(page, /Выбрать дату и время/);
+});
+
+test("all image-led heroes use the shared parallax image", async () => {
+  const fs = await import("node:fs/promises");
+  const [cafe, bathhouse, contacts, rental] = await Promise.all([
+    fs.readFile(new URL("../app/cafe/page.tsx", import.meta.url), "utf8"),
+    fs.readFile(new URL("../app/bathhouse/page.tsx", import.meta.url), "utf8"),
+    fs.readFile(new URL("../app/contacts/page.tsx", import.meta.url), "utf8"),
+    fs.readFile(new URL("../components/RentalSeasons.tsx", import.meta.url), "utf8"),
+  ]);
+  for (const page of [cafe, bathhouse, contacts, rental]) {
+    assert.match(page, /<ParallaxHeroImage/);
+  }
+});
+
+test("all top banners share the same responsive height", async () => {
+  const css = await (
+    await import("node:fs/promises")
+  ).readFile(new URL("../app/hero-heights.css", import.meta.url), "utf8");
+  assert.match(css, /\.homeHero,[\s\S]*\.innerHero,[\s\S]*\.rentalHero[\s\S]*height:\s*620px/);
+  assert.match(css, /@media \(max-width: 800px\)[\s\S]*height:\s*570px/);
 });
 
 test("mobile layout does not force a desktop minimum width", async () => {
@@ -47,7 +96,7 @@ test("uploaded cafe, bathhouse, and beach photos are assigned to the right secti
   ]);
   assert.match(
     cafe,
-    /className="innerHero"[\s\S]*src="\/images\/cafe-card\.webp"/,
+    /className="innerHero"[\s\S]*src="\/images\/cafe-hero-enhanced\.png"/,
   );
   assert.match(
     cafe,
@@ -430,7 +479,7 @@ test("booking CTAs share the configurable YCLIENTS destination", async () => {
   );
   assert.match(
     siteConfig,
-    /NEXT_PUBLIC_YCLIENTS_URL\s*\|\|\s*"https:\/\/yclients\.com"/,
+    /NEXT_PUBLIC_YCLIENTS_URL\s*\|\|\s*"https:\/\/n1129088\.yclients\.ru"/,
   );
   assert.match(siteConfig, /ctaHref:\s*site\.bookingUrl/);
 });
@@ -583,4 +632,38 @@ test("mobile menu button has a clear hamburger and open state", async () => {
     css,
     /\.siteHeader \.mobileMenu nav\s*\{[^}]*max-height:\s*calc\(100dvh - 92px\);[^}]*overflow-y:\s*auto/s,
   );
+});
+
+test("homepage and inner pages share one content width", async () => {
+  const css = await (
+    await import("node:fs/promises")
+  ).readFile(new URL("../app/content-widths.css", import.meta.url), "utf8");
+  assert.match(css, /\.pageWidth,[\s\S]*?\.headerInner,[\s\S]*?\.homeCards\s*\{/s);
+  assert.match(css, /--site-content-width:\s*1180px/);
+  assert.match(css, /width:\s*min\(var\(--site-content-width\),\s*calc\(100% - \(var\(--site-content-gutter\) \* 2\)\)\)/);
+  assert.match(css, /@media \(max-width: 800px\)[\s\S]*?width:\s*calc\(100% - 32px\)/s);
+});
+
+test("menu pages can be turned from the page edges", async () => {
+  const component = await (
+    await import("node:fs/promises")
+  ).readFile(new URL("../components/MenuBook.tsx", import.meta.url), "utf8");
+  const css = await (
+    await import("node:fs/promises")
+  ).readFile(new URL("../app/menu/menu.css", import.meta.url), "utf8");
+  assert.match(component, /className="menuBookEdge menuBookEdge-previous"[\s\S]*?onClick=\{goPrevious\}/s);
+  assert.match(component, /className="menuBookEdge menuBookEdge-next"[\s\S]*?onClick=\{goNext\}/s);
+  assert.match(css, /\.menuBookEdge\s*\{[^}]*position:\s*absolute;[^}]*width:\s*18%/s);
+  assert.match(css, /\.menuBookControls\s*\{[^}]*display:\s*grid;[^}]*grid-template-columns:\s*1fr auto 1fr/s);
+});
+
+test("menu controls use outlined pill buttons without visible arrows", async () => {
+  const component = await (
+    await import("node:fs/promises")
+  ).readFile(new URL("../components/MenuBook.tsx", import.meta.url), "utf8");
+  const css = await (
+    await import("node:fs/promises")
+  ).readFile(new URL("../app/menu/menu.css", import.meta.url), "utf8");
+  assert.doesNotMatch(component, /<span aria-hidden="true">[←→]<\/span>/);
+  assert.match(css, /\.menuBookControls button\s*\{[^}]*border:\s*1px solid[^}]*border-radius:\s*999px/s);
 });

@@ -4,6 +4,7 @@ import { BookingBand } from "@/components/BookingBand";
 import { ButtonLink } from "@/components/ButtonLink";
 import { Header } from "@/components/Header";
 import { ImageGallery } from "@/components/ImageGallery";
+import { ParallaxHeroImage } from "@/components/ParallaxHeroImage";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -17,10 +18,9 @@ export default function CafePage() {
   return (
     <main>
       <section className="innerHero">
-        <Image
-          src="/images/cafe-card.webp"
+        <ParallaxHeroImage
+          src="/images/cafe-hero-enhanced.png"
           alt="Панорамный зал кафе «Карьер» с видом на воду"
-          fill
           priority
           sizes="100vw"
         />

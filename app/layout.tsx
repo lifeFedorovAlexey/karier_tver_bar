@@ -10,6 +10,9 @@ import "./reference-design.css";
 import "./footer-match.css";
 import "./pixel-perfect.css";
 import "./design-corrections.css";
+import "./rental.css";
+import "./hero-heights.css";
+import "./content-widths.css";
 
 const sans = Manrope({ subsets: ["cyrillic", "latin"], weight: ["400", "500", "600", "700"], variable: "--font-sans", display: "swap" });
 const script = Marck_Script({ subsets: ["cyrillic", "latin"], weight: "400", variable: "--font-script", display: "swap" });

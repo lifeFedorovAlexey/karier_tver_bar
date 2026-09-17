@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { ButtonLink } from "@/components/ButtonLink";
 import { Header } from "@/components/Header";
+import { ParallaxHeroImage } from "@/components/ParallaxHeroImage";
 import { ClockIcon, PinIcon, PhoneIcon } from "@/components/icons";
 import { site } from "@/lib/site";
 
@@ -16,10 +16,9 @@ export default function ContactsPage() {
   return (
     <main className="contactsPage">
       <section className="innerHero contactsVisualHero">
-        <Image
+        <ParallaxHeroImage
           src="/images/beach-panorama-2026.webp"
           alt="Барная стойка кафе «Карьер»"
-          fill
           priority
           sizes="100vw"
         />

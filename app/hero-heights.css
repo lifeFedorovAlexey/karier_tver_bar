@@ -1,0 +1,24 @@
+/* Every top banner uses the same vertical rhythm across the site. */
+.homeHero,
+.innerHero,
+.rentalHero {
+  height: 620px;
+  min-height: 620px;
+}
+
+.homeHero {
+  min-height: 0;
+}
+
+@media (max-width: 800px) {
+  .homeHero,
+  .innerHero,
+  .rentalHero {
+    height: 570px;
+    min-height: 570px;
+  }
+
+  .homeHero {
+    min-height: 0;
+  }
+}

@@ -11,7 +11,10 @@ export default function HomePage() {
   return (
     <main>
       <section className="hero homeHero">
-        <ParallaxHeroImage />
+            <ParallaxHeroImage
+              src="/images/karier-bathhouse-enhanced-4k.png"
+              alt="Кафе и баня «Карьер» на берегу Константиновского карьера"
+            />
         <div className="heroShade" />
         <Header overlay />
         <div className="heroContent pageWidth">

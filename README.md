@@ -17,6 +17,8 @@ npm run dev
 npm run check
 ```
 
+Инструкция по выкладке на стенд: [`DEPLOY.md`](./DEPLOY.md).
+
 ## Настройка перед публикацией
 
 1. Скопировать `.env.example` в `.env.local`.

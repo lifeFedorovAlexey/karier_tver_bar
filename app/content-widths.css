@@ -1,0 +1,20 @@
+:root {
+  --site-content-width: 1180px;
+  --site-content-gutter: 32px;
+}
+
+/* Keep the homepage and inner pages on the same content grid. */
+.pageWidth,
+.headerInner,
+.homeCards {
+  width: min(var(--site-content-width), calc(100% - (var(--site-content-gutter) * 2)));
+  margin-inline: auto;
+}
+
+@media (max-width: 800px) {
+  .pageWidth,
+  .headerInner,
+  .homeCards {
+    width: calc(100% - 32px);
+  }
+}

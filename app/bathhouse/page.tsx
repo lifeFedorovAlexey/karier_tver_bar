@@ -4,6 +4,7 @@ import { BookingBand } from "@/components/BookingBand";
 import { ButtonLink } from "@/components/ButtonLink";
 import { Header } from "@/components/Header";
 import { ImageGallery } from "@/components/ImageGallery";
+import { ParallaxHeroImage } from "@/components/ParallaxHeroImage";
 import { site } from "@/lib/site";
 import { LeafIcon, SteamIcon, WaterIcon } from "@/components/icons";
 
@@ -18,10 +19,9 @@ export default function BathhousePage() {
   return (
     <main>
       <section className="innerHero bathHero">
-        <Image
+        <ParallaxHeroImage
           src="/images/karier-real-bathhouse.png"
           alt="Баня «Карьер» с купелью на берегу"
-          fill
           priority
           sizes="100vw"
         />

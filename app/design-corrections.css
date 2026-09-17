@@ -49,7 +49,7 @@ body {
   height: auto;
   min-height: 0;
 }
-.homeHero .heroParallaxImage {
+.heroParallaxImage {
   --hero-parallax: 0px;
   transform: translate3d(0, var(--hero-parallax), 0) scale(1.12);
   transform-origin: center 58%;
@@ -57,7 +57,7 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .homeHero .heroParallaxImage {
+  .heroParallaxImage {
     transform: scale(1.12);
   }
 }
