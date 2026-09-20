@@ -22,7 +22,7 @@ export default function BathhousePage() {
         <ParallaxHeroImage
           src="/images/karier-real-bathhouse.png"
           alt="Баня «Карьер» с купелью на берегу"
-          priority
+          preload
           sizes="100vw"
         />
         <div className="heroShade" />

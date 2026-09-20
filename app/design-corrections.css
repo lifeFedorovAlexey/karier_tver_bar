@@ -80,8 +80,8 @@ body {
   z-index: 1;
   inset: 0;
   background: var(--ink);
-  -webkit-mask: url("/images/manifesto-brush.png") center / 100% 100% no-repeat;
-  mask: url("/images/manifesto-brush.png") center / 100% 100% no-repeat;
+  -webkit-mask: url("/images/manifesto-brush.webp") center / 100% 100% no-repeat;
+  mask: url("/images/manifesto-brush.webp") center / 100% 100% no-repeat;
   pointer-events: none;
 }
 .homeCards .experienceCardLink {
@@ -128,8 +128,8 @@ body {
   z-index: -1;
   inset: -7px -12px;
   background: var(--cream);
-  -webkit-mask: url("/images/manifesto-brush.png") center / 100% 100% no-repeat;
-  mask: url("/images/manifesto-brush.png") center / 100% 100% no-repeat;
+  -webkit-mask: url("/images/manifesto-brush.webp") center / 100% 100% no-repeat;
+  mask: url("/images/manifesto-brush.webp") center / 100% 100% no-repeat;
   pointer-events: none;
 }
 .button-cream {
@@ -144,8 +144,8 @@ body {
   z-index: -1;
   inset: -7px -12px;
   background: var(--ink);
-  -webkit-mask: url("/images/manifesto-brush.png") center / 100% 100% no-repeat;
-  mask: url("/images/manifesto-brush.png") center / 100% 100% no-repeat;
+  -webkit-mask: url("/images/manifesto-brush.webp") center / 100% 100% no-repeat;
+  mask: url("/images/manifesto-brush.webp") center / 100% 100% no-repeat;
   pointer-events: none;
 }
 .button-dark {
@@ -194,8 +194,8 @@ body {
   z-index: -1;
   inset: -9px -18px;
   background: rgba(29, 29, 25, 0.82);
-  -webkit-mask: url("/images/manifesto-brush.png") center / 100% 100% no-repeat;
-  mask: url("/images/manifesto-brush.png") center / 100% 100% no-repeat;
+  -webkit-mask: url("/images/manifesto-brush.webp") center / 100% 100% no-repeat;
+  mask: url("/images/manifesto-brush.webp") center / 100% 100% no-repeat;
   pointer-events: none;
 }
 .panoramaNote::after {
@@ -650,8 +650,8 @@ body {
   bottom: 7px;
   background: #e8d5b8;
   opacity: 0.8;
-  -webkit-mask: url("/images/manifesto-brush.png") center / 100% 100% no-repeat;
-  mask: url("/images/manifesto-brush.png") center / 100% 100% no-repeat;
+  -webkit-mask: url("/images/manifesto-brush.webp") center / 100% 100% no-repeat;
+  mask: url("/images/manifesto-brush.webp") center / 100% 100% no-repeat;
   transform: rotate(-5deg);
   pointer-events: none;
 }
@@ -823,8 +823,8 @@ body {
   z-index: -1;
   inset: -16px -38px -18px;
   background: rgba(18, 29, 25, 0.82);
-  -webkit-mask: url("/images/manifesto-brush.png") center / 100% 100% no-repeat;
-  mask: url("/images/manifesto-brush.png") center / 100% 100% no-repeat;
+  -webkit-mask: url("/images/manifesto-brush.webp") center / 100% 100% no-repeat;
+  mask: url("/images/manifesto-brush.webp") center / 100% 100% no-repeat;
   filter: drop-shadow(0 8px 14px rgba(8, 14, 12, 0.24));
   pointer-events: none;
 }
@@ -1065,8 +1065,8 @@ body {
   z-index: -1;
   inset: -16px -34px -18px;
   background: var(--cream);
-  -webkit-mask: url("/images/manifesto-brush.png") center / 100% 100% no-repeat;
-  mask: url("/images/manifesto-brush.png") center / 100% 100% no-repeat;
+  -webkit-mask: url("/images/manifesto-brush.webp") center / 100% 100% no-repeat;
+  mask: url("/images/manifesto-brush.webp") center / 100% 100% no-repeat;
   transform: rotate(5deg);
   opacity: 0.78;
   pointer-events: none;

@@ -21,11 +21,11 @@ export default function HomePage() {
           <h1 className="heroTitle">
             <Image
               className="heroTitleArtwork"
-              src="/images/hero-title.png"
+              src="/images/hero-title.webp"
               alt="Отдых рядом с городом"
               width={1536}
               height={1024}
-              priority
+              loading="eager"
             />
           </h1>
           <div className="heroActions">

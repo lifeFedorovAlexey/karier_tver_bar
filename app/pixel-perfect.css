@@ -161,7 +161,7 @@ body { font-family: var(--font-sans); }
   height: 170px;
   right: -58px;
   bottom: -12px;
-  background: url("/images/manifesto-brush.png") center / 100% 100% no-repeat;
+  background: url("/images/manifesto-brush.webp") center / 100% 100% no-repeat;
   opacity: 1;
   transform: none;
   clip-path: none;

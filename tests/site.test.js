@@ -51,7 +51,7 @@ test("homepage uses the requested bathhouse artwork", async () => {
     "utf8",
   );
   assert.match(page, /<ParallaxHeroImage[\s\S]*src="\/images\/karier-bathhouse-enhanced-4k\.png"/);
-  assert.match(page, /className="heroTitleArtwork"[\s\S]*src="\/images\/hero-title\.png"/);
+  assert.match(page, /className="heroTitleArtwork"[\s\S]*src="\/images\/hero-title\.webp"/);
   assert.match(hero, /src=\{src\}/);
   assert.match(hero, /window\.scrollY \* 0\.12/);
   assert.doesNotMatch(page, /src="\/images\/karier-real-hero\.png"/);
@@ -357,7 +357,7 @@ test("homepage includes the manifesto strip between cards and panorama", async (
   );
   assert.match(
     css,
-    /\.homeManifesto \.manifestoNote::before\s*\{[^}]*background:\s*var\(--cream\);[^}]*manifesto-brush\.png/s,
+    /\.homeManifesto \.manifestoNote::before\s*\{[^}]*background:\s*var\(--cream\);[^}]*manifesto-brush\.webp/s,
   );
   assert.match(
     css,
@@ -413,7 +413,7 @@ test("experience card frame is shared across every breakpoint", async () => {
   );
   assert.match(
     css,
-    /\.homeCards \.experienceContent::before\s*\{[^}]*inset:\s*-16px -38px -18px;[^}]*background:\s*rgba\(18, 29, 25, 0\.82\);[^}]*manifesto-brush\.png/s,
+    /\.homeCards \.experienceContent::before\s*\{[^}]*inset:\s*-16px -38px -18px;[^}]*background:\s*rgba\(18, 29, 25, 0\.82\);[^}]*manifesto-brush\.webp/s,
   );
   assert.doesNotMatch(
     css,

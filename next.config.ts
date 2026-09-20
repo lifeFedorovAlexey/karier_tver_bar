@@ -12,6 +12,7 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   compress: true,
   images: { formats: ["image/avif", "image/webp"] },
+  experimental: { inlineCss: true },
   async headers() {
     return [{ source: "/(.*)", headers: securityHeaders }];
   },

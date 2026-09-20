@@ -19,7 +19,7 @@ export default function ContactsPage() {
         <ParallaxHeroImage
           src="/images/beach-panorama-2026.webp"
           alt="Барная стойка кафе «Карьер»"
-          priority
+          preload
           sizes="100vw"
         />
         <div className="heroShade" />
