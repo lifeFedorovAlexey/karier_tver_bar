@@ -11,7 +11,7 @@ export function Footer() {
       <div className="footerMain pageWidth">
         <div className="footerBrand"><Logo light variant="footer" /></div>
         <div className="footerContacts">
-          <a href={site.phoneHref}><PhoneIcon size={18} />{site.phoneLabel}</a>
+          <a href={site.phoneHref} data-metrika-goal="phone_click"><PhoneIcon size={18} />{site.phoneLabel}</a>
           <span><PinIcon size={18} />{site.address}</span>
           <span><ClockIcon size={18} />{site.hours}</span>
           <div className="footerSocials" aria-label="Социальные сети">

@@ -1,3 +1,7 @@
+export const siteUrl = (
+  process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
+).replace(/\/+$/, "");
+
 export const site = {
   name: "Карьер",
   descriptor: "кафе у воды",
@@ -7,6 +11,11 @@ export const site = {
   hours: "Ежедневно с 10:00 до 22:00",
   bookingUrl:
     process.env.NEXT_PUBLIC_YCLIENTS_URL || "https://n1129088.yclients.ru",
+  socialUrls: [
+    "https://vk.ru/tverplazh",
+    "https://t.me/restinginthetver",
+    "https://www.instagram.com/tverplazh/",
+  ],
 } as const;
 
 export const navigation = [

@@ -19,10 +19,14 @@ export default function HomePage() {
         <Header overlay />
         <div className="heroContent pageWidth">
           <h1 className="heroTitle">
+            <span className="visuallyHidden">
+              Отдых на Константиновских карьерах в Твери
+            </span>
             <Image
               className="heroTitleArtwork"
               src="/images/hero-title.webp"
-              alt="Отдых рядом с городом"
+              alt=""
+              aria-hidden="true"
               width={1536}
               height={1024}
               sizes="(max-width: 800px) 86vw, 330px"

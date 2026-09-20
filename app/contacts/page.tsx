@@ -6,10 +6,21 @@ import { ClockIcon, PinIcon, PhoneIcon } from "@/components/icons";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Контакты",
+  title: {
+    absolute: "Контакты «Карьер» — телефон, режим работы и карта",
+  },
   description:
-    "Адрес, часы работы и бронирование кафе и бани «Карьер» в Твери.",
+    "Телефон, режим работы, карта и онлайн-бронирование кафе и бани «Карьер» в Твери.",
   alternates: { canonical: "/contacts" },
+  openGraph: {
+    title: "Контакты кафе и бани «Карьер»",
+    description: "Телефон, режим работы, карта и онлайн-бронирование.",
+    url: "/contacts",
+    siteName: "Карьер",
+    locale: "ru_RU",
+    type: "website",
+    images: [{ url: "/images/beach-panorama-2026.webp", alt: "Кафе «Карьер» в Твери" }],
+  },
 };
 
 export default function ContactsPage() {
@@ -40,7 +51,7 @@ export default function ContactsPage() {
       <section className="contactGrid contactGridDesigned pageWidth">
         <div className="contactPanel">
           <span className="eyebrow">Контакты</span>
-          <a href={site.phoneHref}>
+          <a href={site.phoneHref} data-metrika-goal="phone_click">
             <PhoneIcon />
             <span>
               <small>Телефон</small>
@@ -74,7 +85,6 @@ export default function ContactsPage() {
             YCLIENTS.
           </p>
           <ButtonLink href={site.bookingUrl}>Перейти к записи</ButtonLink>
-          <small>Ссылка временная — заменим на прямую страницу записи.</small>
         </div>
       </section>
       <section className="mapSection" aria-label="Расположение на карте">
@@ -86,6 +96,7 @@ export default function ContactsPage() {
         />
         <a
           className="mapLink"
+          data-metrika-goal="map_open"
           href="https://yandex.ru/maps/?ll=35.995277%2C56.846352&mode=whatshere&whatshere%5Bpoint%5D=35.995277%2C56.846352&whatshere%5Bzoom%5D=16&z=16"
           target="_blank"
           rel="noreferrer"

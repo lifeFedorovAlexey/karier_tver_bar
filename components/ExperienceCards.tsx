@@ -9,7 +9,7 @@ export function ExperienceCards() {
         <Image src={item.image} alt="" fill sizes="(max-width: 760px) 100vw, 50vw" />
         <span className="cardShade" />
       </Link>
-      <div className="experienceContent"><span className="eyebrow">{item.eyebrow}</span><h3>{item.title}</h3><p>{item.description}</p><Link className="textLink" href={item.ctaHref}>{item.cta}</Link></div>
+      <div className="experienceContent"><span className="eyebrow">{item.eyebrow}</span><h3>{item.title}</h3><p>{item.description}</p><Link className="textLink" href={item.ctaHref} data-metrika-goal={item.ctaHref === "/menu" ? "menu_open" : "booking_click"}>{item.cta}</Link></div>
     </article>
   ))}</div>;
 }

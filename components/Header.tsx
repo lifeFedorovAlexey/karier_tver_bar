@@ -26,7 +26,7 @@ export function Header({ overlay = false }: { overlay?: boolean }) {
         <nav aria-label="Основная навигация" className="desktopNav">
           {navigation.map((item) => <Link key={item.href} href={item.href} className={item.href === pathname ? "active" : undefined} aria-current={item.href === pathname ? "page" : undefined}>{item.label}</Link>)}
         </nav>
-        <a className="phoneLink" href={site.phoneHref}><PhoneIcon size={16} /> {site.phoneLabel}</a>
+        <a className="phoneLink" href={site.phoneHref} data-metrika-goal="phone_click"><PhoneIcon size={16} /> {site.phoneLabel}</a>
         <div className="headerBooking"><ButtonLink href={site.bookingUrl}>Забронировать</ButtonLink></div>
         <details className="mobileMenu">
           <summary aria-label="Открыть меню"><span /><span /><span /></summary>

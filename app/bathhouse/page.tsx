@@ -4,20 +4,38 @@ import { BookingBand } from "@/components/BookingBand";
 import { ButtonLink } from "@/components/ButtonLink";
 import { Header } from "@/components/Header";
 import { ImageGallery } from "@/components/ImageGallery";
+import { JsonLd, serviceJsonLd } from "@/components/JsonLd";
 import { ParallaxHeroImage } from "@/components/ParallaxHeroImage";
 import { site } from "@/lib/site";
 import { LeafIcon, SteamIcon, WaterIcon } from "@/components/icons";
 
 export const metadata: Metadata = {
-  title: "Баня на берегу",
+  title: { absolute: "Баня «Карьер» в Твери — цены и бронирование" },
   description:
-    "Дровяная баня на берегу Константиновского карьера: парная, выход к воде и отдых среди сосен.",
+    "Баня «Карьер» на Константиновских карьерах в Твери: дровяная парная, зона отдыха, выход к воде и онлайн-бронирование.",
   alternates: { canonical: "/bathhouse" },
+  openGraph: {
+    title: "Баня «Карьер» в Твери — цены и бронирование",
+    description:
+      "Дровяная баня на Константиновских карьерах: парная, зона отдыха и выход к воде.",
+    url: "/bathhouse",
+    siteName: "Карьер",
+    locale: "ru_RU",
+    type: "website",
+    images: [{ url: "/images/bathhouse-ice-hole.webp", alt: "Баня «Карьер» у воды" }],
+  },
 };
 
 export default function BathhousePage() {
   return (
     <main>
+      <JsonLd
+        data={serviceJsonLd(
+          "Баня «Карьер»",
+          "/bathhouse",
+          "Дровяная баня на Константиновских карьерах в Твери с парной, зоной отдыха и выходом к воде.",
+        )}
+      />
       <section className="innerHero bathHero">
         <ParallaxHeroImage
           src="/images/karier-real-bathhouse.png"
@@ -55,9 +73,9 @@ export default function BathhousePage() {
             Отдельная баня для вашей компании — без спешки и посторонних.
           </p>
           <p>
-            Дровяная печь, просторная парная, зона отдыха и собственный выход к
-            воде. Всё, что нужно для правильного ритуала и долгого спокойного
-            вечера.
+            Баня «Карьер» в Твери — это дровяная печь, просторная парная, зона
+            отдыха и собственный выход к воде. Всё, что нужно для правильного
+            ритуала и долгого спокойного вечера.
           </p>
         </div>
       </section>

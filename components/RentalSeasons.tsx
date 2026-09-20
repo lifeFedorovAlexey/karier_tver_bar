@@ -143,10 +143,49 @@ function PriceCardView({ card }: { card: PriceCard }) {
   );
 }
 
+function SeasonBoard({
+  season,
+  active,
+}: {
+  season: Season;
+  active: boolean;
+}) {
+  const isWinter = season === "winter";
+  const prices = isWinter ? winterPrices : summerPrices;
+
+  return (
+    <section
+      id={`rental-${season}-panel`}
+      role="tabpanel"
+      aria-labelledby={`rental-${season}-tab`}
+      aria-hidden={!active}
+      hidden={!active}
+      className={`rentalBoard pageWidth ${isWinter ? "rentalBoardWinter" : "rentalBoardSummer"}`}
+    >
+      <div className="rentalBoardHeading">
+        <div>
+          <span className="eyebrow">Сезонный прайс</span>
+          <h2>{isWinter ? "Зимний прокат" : "Летний прокат"}</h2>
+        </div>
+        <p>
+          {isWinter
+            ? "Детский тариф — до 12 лет включительно"
+            : "Больше движения — больше лета"}
+        </p>
+      </div>
+
+      <div className="rentalPriceGrid">
+        {prices.map((card) => (
+          <PriceCardView card={card} key={card.title} />
+        ))}
+      </div>
+    </section>
+  );
+}
+
 export function RentalSeasons() {
   const [season, setSeason] = useState<Season>("winter");
   const isWinter = season === "winter";
-  const prices = isWinter ? winterPrices : summerPrices;
 
   return (
     <>
@@ -183,8 +222,10 @@ export function RentalSeasons() {
             aria-label="Выбор сезона"
           >
             <button
+              id="rental-winter-tab"
               type="button"
               role="tab"
+              aria-controls="rental-winter-panel"
               aria-selected={isWinter}
               className={isWinter ? "active" : undefined}
               onClick={() => setSeason("winter")}
@@ -192,8 +233,10 @@ export function RentalSeasons() {
               Зима
             </button>
             <button
+              id="rental-summer-tab"
               type="button"
               role="tab"
+              aria-controls="rental-summer-panel"
               aria-selected={!isWinter}
               className={!isWinter ? "active" : undefined}
               onClick={() => setSeason("summer")}
@@ -204,27 +247,8 @@ export function RentalSeasons() {
         </div>
       </section>
 
-      <section
-        className={`rentalBoard pageWidth ${isWinter ? "rentalBoardWinter" : "rentalBoardSummer"}`}
-      >
-        <div className="rentalBoardHeading">
-          <div>
-            <span className="eyebrow">Сезонный прайс</span>
-            <h2>{isWinter ? "Зимний прокат" : "Летний прокат"}</h2>
-          </div>
-          <p>
-            {isWinter
-              ? "Детский тариф — до 12 лет включительно"
-              : "Больше движения — больше лета"}
-          </p>
-        </div>
-
-        <div className="rentalPriceGrid">
-          {prices.map((card) => (
-            <PriceCardView card={card} key={card.title} />
-          ))}
-        </div>
-      </section>
+      <SeasonBoard season="winter" active={isWinter} />
+      <SeasonBoard season="summer" active={!isWinter} />
 
       <section className="rentalContact pageWidth">
         <div>

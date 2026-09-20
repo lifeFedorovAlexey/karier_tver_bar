@@ -1,2 +1,12 @@
 import type { MetadataRoute } from "next";
-export default function sitemap(): MetadataRoute.Sitemap { const base = process.env.NEXT_PUBLIC_SITE_URL || "https://example.ru"; return ["", "/cafe", "/menu", "/bathhouse", "/rental", "/contacts"].map((path) => ({ url: `${base}${path}`, lastModified: new Date(), changeFrequency: path === "/menu" ? "weekly" : path ? "monthly" : "weekly", priority: path ? 0.8 : 1 })); }
+import { siteUrl } from "@/lib/site";
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  return ["", "/cafe", "/menu", "/bathhouse", "/rental", "/contacts"].map(
+    (path) => ({
+      url: `${siteUrl}${path}`,
+      changeFrequency: path === "/menu" ? "weekly" : path ? "monthly" : "weekly",
+      priority: path ? 0.8 : 1,
+    }),
+  );
+}

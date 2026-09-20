@@ -4,19 +4,31 @@ import { BookingBand } from "@/components/BookingBand";
 import { ButtonLink } from "@/components/ButtonLink";
 import { Header } from "@/components/Header";
 import { ImageGallery } from "@/components/ImageGallery";
+import { JsonLd, restaurantJsonLd } from "@/components/JsonLd";
 import { ParallaxHeroImage } from "@/components/ParallaxHeroImage";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Кафе у воды",
+  title: { absolute: "Кафе «Карьер» в Твери — меню и бронирование" },
   description:
-    "Сезонная кухня и просторная терраса на берегу Константиновского карьера в Твери.",
+    "Меню и бронирование кафе «Карьер» на Константиновских карьерах в Твери. Кухня, фотографии, режим работы и контакты.",
   alternates: { canonical: "/cafe" },
+  openGraph: {
+    title: "Кафе «Карьер» в Твери — меню и бронирование",
+    description:
+      "Кафе на Константиновских карьерах в Твери: меню, фотографии и бронирование.",
+    url: "/cafe",
+    siteName: "Карьер",
+    locale: "ru_RU",
+    type: "website",
+    images: [{ url: "/images/cafe-hero.webp", alt: "Кафе «Карьер» у воды" }],
+  },
 };
 
 export default function CafePage() {
   return (
     <main>
+      <JsonLd data={restaurantJsonLd()} />
       <section className="innerHero">
         <ParallaxHeroImage
           src="/images/cafe-hero-enhanced.png"
@@ -55,8 +67,9 @@ export default function CafePage() {
             понятную.
           </p>
           <p>
-            В меню — сезонные овощи, блюда на огне, свежая выпечка и лёгкие
-            десерты. Для неспешного завтрака, семейного обеда и длинного вечера
+            Кафе «Карьер» находится на Константиновских карьерах в Твери. В
+            меню — сезонные овощи, блюда на огне, свежая выпечка и лёгкие
+            десерты: для неспешного завтрака, семейного обеда и длинного вечера
             с друзьями.
           </p>
         </div>

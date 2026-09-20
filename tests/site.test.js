@@ -690,3 +690,78 @@ test("rental price cards do not render decorative number lines", async () => {
   assert.doesNotMatch(css, /rentalCardTopline/);
   assert.match(css, /\.rentalPriceCard h3\s*\{[^}]*margin:\s*0 0 19px/s);
 });
+
+test("SEO metadata targets Tver quarry searches without changing the visible homepage artwork", async () => {
+  const fs = await import("node:fs/promises");
+  const [layout, home, css] = await Promise.all([
+    fs.readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
+    fs.readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
+    fs.readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
+  ]);
+  assert.match(layout, /Константиновские карьеры в Твери — кафе, баня и прокат/);
+  assert.doesNotMatch(layout, /example\.ru/);
+  assert.match(home, /className="visuallyHidden"[\s\S]*Отдых на Константиновских карьерах в Твери/);
+  assert.match(home, /src="\/images\/hero-title\.webp"[\s\S]*alt=""[\s\S]*aria-hidden="true"/);
+  assert.match(css, /\.visuallyHidden\s*\{[\s\S]*clip:\s*rect\(0, 0, 0, 0\)/);
+});
+
+test("sitemap uses stable URLs instead of reporting every page as newly modified", async () => {
+  const sitemap = await (
+    await import("node:fs/promises")
+  ).readFile(new URL("../app/sitemap.ts", import.meta.url), "utf8");
+  assert.match(sitemap, /siteUrl/);
+  assert.doesNotMatch(sitemap, /lastModified|new Date\(/);
+  assert.doesNotMatch(sitemap, /example\.ru/);
+});
+
+test("structured data separates the website, restaurant, and services without an unverified address", async () => {
+  const fs = await import("node:fs/promises");
+  const [jsonLd, cafe, bathhouse, rental] = await Promise.all([
+    fs.readFile(new URL("../components/JsonLd.tsx", import.meta.url), "utf8"),
+    fs.readFile(new URL("../app/cafe/page.tsx", import.meta.url), "utf8"),
+    fs.readFile(new URL("../app/bathhouse/page.tsx", import.meta.url), "utf8"),
+    fs.readFile(new URL("../app/rental/page.tsx", import.meta.url), "utf8"),
+  ]);
+  assert.match(jsonLd, /"@type": "WebSite"/);
+  assert.match(jsonLd, /"@type": "Restaurant"/);
+  assert.match(jsonLd, /"@type": "Service"/);
+  assert.doesNotMatch(jsonLd, /PostalAddress|streetAddress|addressLocality/);
+  assert.match(cafe, /restaurantJsonLd\(\)/);
+  assert.match(bathhouse, /serviceJsonLd\(/);
+  assert.match(rental, /serviceJsonLd\(/);
+});
+
+test("menu has crawlable dishes and omits the duplicated source page", async () => {
+  const page = await (
+    await import("node:fs/promises")
+  ).readFile(new URL("../app/menu/page.tsx", import.meta.url), "utf8");
+  assert.match(page, /Меню кафе «Карьер» в Твери — блюда и цены/);
+  assert.match(page, /Скрэмбл на тостовом хлебе/);
+  assert.match(page, /Шашлык из свиной шеи/);
+  assert.match(page, /\[1, 3, 4, 5, 6, 7\]/);
+  assert.doesNotMatch(page, /m2\.jpg/);
+});
+
+test("both rental seasons are present in server-rendered markup", async () => {
+  const component = await (
+    await import("node:fs/promises")
+  ).readFile(new URL("../components/RentalSeasons.tsx", import.meta.url), "utf8");
+  assert.match(component, /<SeasonBoard season="winter" active=\{isWinter\} \/>/);
+  assert.match(component, /<SeasonBoard season="summer" active=\{!isWinter\} \/>/);
+  assert.match(component, /role="tabpanel"/);
+});
+
+test("Yandex Metrika conversion goals are wired before Webmaster setup", async () => {
+  const fs = await import("node:fs/promises");
+  const [metrika, button, contacts] = await Promise.all([
+    fs.readFile(new URL("../components/Metrika.tsx", import.meta.url), "utf8"),
+    fs.readFile(new URL("../components/ButtonLink.tsx", import.meta.url), "utf8"),
+    fs.readFile(new URL("../app/contacts/page.tsx", import.meta.url), "utf8"),
+  ]);
+  assert.match(metrika, /reachGoal/);
+  assert.match(button, /booking_click/);
+  assert.match(button, /phone_click/);
+  assert.match(button, /menu_open/);
+  assert.match(contacts, /data-metrika-goal="map_open"/);
+  assert.doesNotMatch(contacts, /Ссылка временная/);
+});
