@@ -4,13 +4,10 @@
     grid-template-columns: 150px 1fr 220px;
     gap: 38px;
   }
-  .manifestoTrees { width: 112px; }
   .manifestoCopy span { font-size: 11px; line-height: 1.5; }
   .manifestoCopy p { margin-top: 10px; font-size: 10px; }
   .manifestoNote { font-size: 31px; }
   .homeManifesto::after { width: 290px; height: 90px; bottom: 12px; }
-  .closingLandscape { height: 190px; }
-  .closingLandscape > img { object-position: center 44%; }
   .footerMain {
     min-height: 74px;
     padding-block: 14px;
@@ -22,9 +19,4 @@
   .footerBrand .logo strong { font-size: 30px; }
   .footerBrand .logo svg { width: 39px; }
   .footerContacts { gap: 28px; }
-}
-
-@media (max-width: 800px) {
-  .closingLandscape { height: 180px; }
-  .closingLandscape > img { object-position: center 46%; }
 }

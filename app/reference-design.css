@@ -1,7 +1,119 @@
-:root{--ink:#15201c;--forest:#16231f;--cream:#f3dfba;--paper:#f7f4ed;--sand:#e8d5b8;--display:var(--font-condensed),Arial,sans-serif;--script:var(--font-script),cursive}
-body{background:var(--paper);font-size:14px}.pageWidth{width:min(1180px,calc(100% - 80px))}
-.logo strong{font-family:var(--font-condensed);font-size:25px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;line-height:.8}.logo small{font-family:var(--font-condensed);font-weight:500;margin-top:7px}.logo svg{width:42px}.siteHeader{height:88px}.desktopNav{gap:30px;font-family:var(--font-condensed);font-size:12px;text-transform:uppercase;letter-spacing:.06em}.phoneLink{padding:0;border:0;font-family:var(--font-condensed);font-size:12px}.headerBooking .button{min-height:36px;padding-inline:19px}.headerBooking .button svg{display:none}
-.homeHero{border-radius:0 0 3px 3px}.heroContent{justify-content:center;padding-top:86px}.hero h1{font-family:var(--script);font-size:clamp(72px,8vw,116px);font-weight:400;line-height:.72;margin:0 0 34px;letter-spacing:-.045em;transform:rotate(-3deg)}.heroIntro{font-size:17px!important;line-height:1.35!important;margin:0 0 22px!important}.heroNote{position:absolute;z-index:2;top:145px;right:9vw;margin:0;font-family:var(--script);font-size:32px!important;line-height:.9!important;color:#17241f;text-align:center;transform:rotate(-9deg)}.heroActions{margin-top:5px}.button{min-height:46px;padding:0 20px;gap:28px;font-family:var(--font-condensed);font-size:11px}.homeCards{padding-top:28px}.experienceGrid{gap:18px}.experienceCard{min-height:390px;border-radius:12px}.experienceContent{left:28px;right:26px;bottom:24px}.experienceContent .eyebrow{display:none}.experienceContent h3{font-family:var(--display);font-size:36px;font-weight:700;text-transform:uppercase}.experienceContent p{max-width:270px;font-size:12px;line-height:1.45;margin:5px 0 17px;text-transform:uppercase}.textLink{font-family:var(--font-condensed);font-size:11px}.textLink i{width:42px;height:42px}.features{display:none}.homeCards{padding-bottom:28px}.homeManifesto{margin-top:0}.features svg{width:31px}.features span{font-size:10px}.features b{font-size:11px}
-.homeManifesto{min-height:205px}.manifestoCopy span{font-size:13px}.manifestoCopy p{font-size:11px}.manifestoNote{font-family:var(--script);font-size:36px}.closingLandscape{height:300px}.closingLandscape p{font-family:var(--script);font-size:40px}
-.innerHero{height:500px;min-height:500px}.innerHeroContent{padding-top:72px}.innerHero h1{font-family:var(--script);font-size:clamp(76px,9vw,125px);font-weight:600;line-height:.72;letter-spacing:-.04em;margin:14px 0 24px}.innerHero h1 em{color:#fff;font-weight:600}.innerHeroContent p{font-family:var(--script);font-size:31px;line-height:.9}.story{padding-block:55px 45px;gap:8vw}.story h2{font-family:var(--display);font-size:clamp(35px,4vw,55px);font-weight:700;line-height:1}.storyLead{font-family:var(--display);font-size:20px;font-weight:700}.menuPreview,.ritual{margin-bottom:60px}.menuPhoto,.ritualPhoto{min-height:470px}.menuList{padding:46px 42px}.menuList h2,.bookingBand h2{font-family:var(--display);font-weight:700;font-size:42px}.bookingBand{padding-block:60px}
-@media(max-width:800px){.pageWidth,.headerInner{width:calc(100% - 28px)}.headerBooking{display:none}.heroContent{justify-content:flex-end;padding-bottom:72px}.hero h1{font-size:72px}.heroIntro{font-size:15px!important}.heroNote{top:115px;right:24px;font-size:24px!important}.heroActions{flex-direction:row;flex-wrap:wrap}.experienceCard{min-height:400px}.features{grid-template-columns:1fr 1fr;gap:24px 5px}.features>div{justify-content:flex-start}.innerHero{height:620px;min-height:620px}.innerHeroContent{justify-content:flex-end;padding-bottom:55px}.innerHero h1{font-size:70px}}
+:root {
+  --ink: #15201c;
+  --forest: #16231f;
+  --cream: #f3dfba;
+  --paper: #f7f4ed;
+  --sand: #e8d5b8;
+  --display: var(--font-condensed), Arial, sans-serif;
+  --script: var(--font-script), cursive;
+}
+
+body { background: var(--paper); font-size: 14px; }
+.pageWidth { width: min(1180px, calc(100% - 80px)); }
+.logo strong {
+  font-family: var(--font-condensed);
+  font-size: 25px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  line-height: .8;
+}
+.logo small { font-family: var(--font-condensed); font-weight: 500; margin-top: 7px; }
+.logo svg { width: 42px; }
+.siteHeader { height: 88px; }
+.desktopNav {
+  gap: 30px;
+  font-family: var(--font-condensed);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+.phoneLink { padding: 0; border: 0; font-family: var(--font-condensed); font-size: 12px; }
+.headerBooking .button { min-height: 36px; padding-inline: 19px; }
+.headerBooking .button svg { display: none; }
+
+.homeHero { border-radius: 0 0 3px 3px; }
+.heroContent { justify-content: center; padding-top: 86px; }
+.hero h1 {
+  font-family: var(--script);
+  font-size: clamp(72px, 8vw, 116px);
+  font-weight: 400;
+  line-height: .72;
+  margin: 0 0 34px;
+  letter-spacing: -.045em;
+  transform: rotate(-3deg);
+}
+.heroActions { margin-top: 5px; }
+.button {
+  min-height: 46px;
+  padding: 0 20px;
+  gap: 28px;
+  font-family: var(--font-condensed);
+  font-size: 11px;
+}
+.homeCards { padding-top: 28px; padding-bottom: 28px; }
+.experienceGrid { gap: 18px; }
+.experienceCard { min-height: 390px; border-radius: 12px; }
+.experienceContent { left: 28px; right: 26px; bottom: 24px; }
+.experienceContent .eyebrow { display: none; }
+.experienceContent h3 {
+  font-family: var(--display);
+  font-size: 36px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.experienceContent p {
+  max-width: 270px;
+  font-size: 12px;
+  line-height: 1.45;
+  margin: 5px 0 17px;
+  text-transform: uppercase;
+}
+.textLink { font-family: var(--font-condensed); font-size: 11px; }
+.textLink i { width: 42px; height: 42px; }
+.homeManifesto { margin-top: 0; min-height: 205px; }
+.manifestoCopy span { font-size: 13px; }
+.manifestoCopy p { font-size: 11px; }
+.manifestoNote { font-family: var(--script); font-size: 36px; }
+
+.innerHero { height: 500px; min-height: 500px; }
+.innerHeroContent { padding-top: 72px; }
+.innerHero h1 {
+  font-family: var(--script);
+  font-size: clamp(76px, 9vw, 125px);
+  font-weight: 600;
+  line-height: .72;
+  letter-spacing: -.04em;
+  margin: 14px 0 24px;
+}
+.innerHero h1 em { color: #fff; font-weight: 600; }
+.innerHeroContent p { font-family: var(--script); font-size: 31px; line-height: .9; }
+.story { padding-block: 55px 45px; gap: 8vw; }
+.story h2 {
+  font-family: var(--display);
+  font-size: clamp(35px, 4vw, 55px);
+  font-weight: 700;
+  line-height: 1;
+}
+.storyLead { font-family: var(--display); font-size: 20px; font-weight: 700; }
+.menuPreview, .ritual { margin-bottom: 60px; }
+.menuPhoto, .ritualPhoto { min-height: 470px; }
+.menuList { padding: 46px 42px; }
+.menuList h2, .bookingBand h2 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 42px;
+}
+.bookingBand { padding-block: 60px; }
+
+@media (max-width: 800px) {
+  .pageWidth, .headerInner { width: calc(100% - 28px); }
+  .headerBooking { display: none; }
+  .heroContent { justify-content: flex-end; padding-bottom: 72px; }
+  .hero h1 { font-size: 72px; }
+  .heroActions { flex-direction: row; flex-wrap: wrap; }
+  .experienceCard { min-height: 400px; }
+  .innerHero { height: 620px; min-height: 620px; }
+  .innerHeroContent { justify-content: flex-end; padding-bottom: 55px; }
+  .innerHero h1 { font-size: 70px; }
+}

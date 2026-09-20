@@ -14,7 +14,6 @@ body { font-family: var(--font-sans); }
 .manifestoCopy,
 .footer { font-family: var(--font-condensed); }
 .hero h1,
-.heroNote,
 .manifestoNote { font-family: var(--font-script); }
 
 @media (min-width: 801px) {
@@ -42,9 +41,7 @@ body { font-family: var(--font-sans); }
     margin: 0 0 32px;
     transform: rotate(-4deg);
   }
-  .heroIntro { font-size: 16px !important; line-height: 1.35 !important; }
   .heroActions .button { min-width: 197px; min-height: 41px; }
-  .heroNote { top: 145px; right: 7.2vw; font-size: 29px !important; }
   .scrollCue { display: none; }
 
   .homeCards { padding: 17px 0 21px; }
@@ -64,14 +61,11 @@ body { font-family: var(--font-sans); }
     grid-template-columns: 126px 1fr 170px;
     gap: 38px;
   }
-  .manifestoTrees { width: 93px; }
   .manifestoCopy span { font-size: 13px; line-height: 1.55; letter-spacing: .25em; font-weight: 400; }
   .manifestoCopy p { margin-top: 12px; font-family: var(--font-sans); font-size: 11px; line-height: 1.4; }
   .manifestoNote { font-size: 29px; }
   .homeManifesto::after { width: 250px; height: 78px; right: -44px; bottom: 9px; }
 
-  .closingLandscape { height: clamp(132px, 15.5vw, 193px); }
-  .closingLandscape > img { object-position: center 46%; }
   .footerMain { min-height: 78px; padding-block: 12px; }
   .footerBrand .logo { min-width: 145px; }
   .footerBrand .logo strong { font-size: 24px; }
@@ -86,7 +80,6 @@ body { font-family: var(--font-sans); }
 
   .heroContent { padding-bottom: 54px; }
   .hero h1 { font-size: clamp(63px, 20vw, 82px); }
-  .heroNote { top: 112px; right: 18px; }
   .homeCards { padding: 14px 0 18px; }
   .experienceGrid { gap: 14px; }
   .experienceCard { min-height: 0; aspect-ratio: .9; }
@@ -97,8 +90,6 @@ body { font-family: var(--font-sans); }
 }
 
 @media (max-width: 430px) {
-  .heroNote { font-size: 22px !important; }
-  .heroIntro { font-size: 14px !important; }
   .heroActions .button { min-height: 42px; }
   .experienceContent { left: 24px; right: 20px; }
   .experienceContent h3 { font-size: 34px; }
@@ -111,14 +102,12 @@ body { font-family: var(--font-sans); }
   .homeHero > img { object-position: 79% center; }
   .homeHero .heroContent { padding-top: 50px; padding-left: 28px; }
   .homeHero h1 { font-size: clamp(76px, 8.9vw, 112px); }
-  .homeHero .heroNote { right: 3.5vw; }
 
   .homeCards .experienceCard:first-child > img { object-position: center 74%; }
   .homeCards .experienceCard:last-child > img { object-position: center top; }
   .homeCards .experienceContent h3 { font-size: 41px; }
   .homeCards .textLink { justify-content: flex-start; gap: 15px; }
 
-  .manifestoTrees { transform: translateX(28px); }
   .footerBrand .logo { transform: translateX(22px); }
 }
 

@@ -595,18 +595,10 @@ body {
   background: transparent;
   color: var(--ink);
 }
-.manifestoTrees,
 .manifestoCopy,
 .manifestoNote {
   position: relative;
   z-index: 1;
-}
-.manifestoTrees {
-  display: block;
-  width: 62px;
-  height: 62px;
-  color: var(--ink);
-  stroke-width: 1.7;
 }
 .manifestoCopy {
   min-width: 0;
@@ -663,10 +655,6 @@ body {
     min-height: 126px;
     padding: 18px 24px;
   }
-  .manifestoTrees {
-    width: 84px;
-    height: 84px;
-  }
   .manifestoCopy span {
     font-size: 12px;
     letter-spacing: 0.24em;
@@ -696,10 +684,6 @@ body {
     gap: 9px;
     min-height: 86px;
     padding: 10px 12px;
-  }
-  .manifestoTrees {
-    width: 54px;
-    height: 54px;
   }
   .manifestoCopy span {
     font-size: 8px;
@@ -1045,9 +1029,6 @@ body {
 }
 .homeManifesto::after {
   content: none;
-  display: none;
-}
-.homeManifesto .manifestoTrees {
   display: none;
 }
 .homeManifesto .manifestoNote {
