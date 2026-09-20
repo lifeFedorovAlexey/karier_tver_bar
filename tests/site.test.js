@@ -53,6 +53,8 @@ test("homepage uses the requested bathhouse artwork", async () => {
   assert.match(page, /<ParallaxHeroImage[\s\S]*src="\/images\/karier-bathhouse-enhanced-4k\.png"/);
   assert.match(page, /className="heroTitleArtwork"[\s\S]*src="\/images\/hero-title\.webp"/);
   assert.match(hero, /src=\{src\}/);
+  assert.match(hero, /fetchPriority=\{fetchPriority\}/);
+  assert.match(hero, /loading=\{fetchPriority === "high" \? "eager" : undefined\}/);
   assert.match(hero, /window\.scrollY \* 0\.12/);
   assert.doesNotMatch(page, /src="\/images\/karier-real-hero\.png"/);
   assert.match(page, /Выбрать дату и время/);

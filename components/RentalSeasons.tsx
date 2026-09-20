@@ -165,7 +165,7 @@ export function RentalSeasons() {
               ? "Зимний прокат на замёрзшем карьере"
               : "Летний пляж на Константиновском карьере"
           }
-          preload
+          fetchPriority="high"
           sizes="100vw"
         />
         <div className="rentalHeroShade" />

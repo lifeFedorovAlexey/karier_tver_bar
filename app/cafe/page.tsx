@@ -21,7 +21,7 @@ export default function CafePage() {
         <ParallaxHeroImage
           src="/images/cafe-hero-enhanced.png"
           alt="Панорамный зал кафе «Карьер» с видом на воду"
-          preload
+          fetchPriority="high"
           sizes="100vw"
         />
         <div className="heroShade" />

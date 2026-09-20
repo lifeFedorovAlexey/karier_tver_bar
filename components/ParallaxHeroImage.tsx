@@ -6,14 +6,14 @@ import { useEffect, useRef } from "react";
 type ParallaxHeroImageProps = {
   src: string;
   alt: string;
-  preload?: boolean;
+  fetchPriority?: "high" | "low" | "auto";
   sizes?: string;
 };
 
 export function ParallaxHeroImage({
   src,
   alt,
-  preload = true,
+  fetchPriority = "high",
   sizes = "100vw",
 }: ParallaxHeroImageProps) {
   const imageRef = useRef<HTMLImageElement>(null);
@@ -48,7 +48,8 @@ export function ParallaxHeroImage({
       src={src}
       alt={alt}
       fill
-      preload={preload}
+      loading={fetchPriority === "high" ? "eager" : undefined}
+      fetchPriority={fetchPriority}
       sizes={sizes}
     />
   );

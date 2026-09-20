@@ -25,6 +25,7 @@ export default function HomePage() {
               alt="Отдых рядом с городом"
               width={1536}
               height={1024}
+              sizes="(max-width: 800px) 86vw, 330px"
               loading="eager"
             />
           </h1>
