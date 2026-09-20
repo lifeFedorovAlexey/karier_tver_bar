@@ -785,3 +785,19 @@ test("Yandex Metrika conversion goals are wired before Webmaster setup", async (
   assert.match(contacts, /data-metrika-goal="map_open"/);
   assert.doesNotMatch(contacts, /Ссылка временная/);
 });
+
+test("app icons and manifest are configured for the venue brand", async () => {
+  const fs = await import("node:fs/promises");
+  const [icon, appleIcon, manifest, layout] = await Promise.all([
+    fs.readFile(new URL("../app/icon.tsx", import.meta.url), "utf8"),
+    fs.readFile(new URL("../app/apple-icon.tsx", import.meta.url), "utf8"),
+    fs.readFile(new URL("../app/manifest.ts", import.meta.url), "utf8"),
+    fs.readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
+  ]);
+  assert.match(icon, /width: 48, height: 48/);
+  assert.match(appleIcon, /width: 180, height: 180/);
+  assert.match(manifest, /Карьер — кафе, баня и прокат в Твери/);
+  assert.match(manifest, /src: "\/icon"/);
+  assert.match(manifest, /src: "\/apple-icon"/);
+  assert.match(layout, /themeColor: "#17241f"/);
+});
