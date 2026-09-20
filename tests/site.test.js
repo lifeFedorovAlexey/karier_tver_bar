@@ -549,7 +549,13 @@ test("footer social links point to the confirmed venue profiles", async () => {
     await import("node:fs/promises")
   ).readFile(new URL("../components/Footer.tsx", import.meta.url), "utf8");
   assert.match(footer, /https:\/\/vk\.ru\/tverplazh/);
+  assert.match(footer, /https:\/\/t\.me\/restinginthetver/);
   assert.match(footer, /https:\/\/www\.instagram\.com\/tverplazh\//);
+});
+
+test("panorama paper edge asset exists", async () => {
+  const fs = await import("node:fs/promises");
+  await fs.access(new URL("../public/images/paper-torn-edge.svg", import.meta.url));
 });
 
 test("confirmed venue contact details replace placeholder data", async () => {
