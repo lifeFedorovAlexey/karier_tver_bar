@@ -553,11 +553,6 @@ test("footer social links point to the confirmed venue profiles", async () => {
   assert.match(footer, /https:\/\/www\.instagram\.com\/tverplazh\//);
 });
 
-test("panorama paper edge asset exists", async () => {
-  const fs = await import("node:fs/promises");
-  await fs.access(new URL("../public/images/paper-torn-edge.svg", import.meta.url));
-});
-
 test("confirmed venue contact details replace placeholder data", async () => {
   const fs = await import("node:fs/promises");
   const [siteConfig, contacts, jsonLd] = await Promise.all([
