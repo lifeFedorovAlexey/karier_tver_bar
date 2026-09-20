@@ -22,7 +22,7 @@ jobs:
       NEXT_PUBLIC_YANDEX_METRIKA_ID: ${{ vars.NEXT_PUBLIC_YANDEX_METRIKA_ID }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
 
       - name: Setup Node.js
         uses: actions/setup-node@v5
@@ -78,7 +78,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout deployment scripts
-        uses: actions/checkout@v5
+        uses: actions/checkout@v7
 
       - name: Download release artifact
         uses: actions/download-artifact@v7
