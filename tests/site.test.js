@@ -703,6 +703,25 @@ test("SEO metadata targets Tver quarry searches without changing the visible hom
   assert.match(home, /className="visuallyHidden"[\s\S]*Отдых на Константиновских карьерах в Твери/);
   assert.match(home, /src="\/images\/hero-title\.webp"[\s\S]*alt=""[\s\S]*aria-hidden="true"/);
   assert.match(css, /\.visuallyHidden\s*\{[\s\S]*clip:\s*rect\(0, 0, 0, 0\)/);
+  assert.match(layout, /keywords:\s*\[[\s\S]*?\][\s\S]*?applicationName/);
+  assert.equal((layout.match(/keywords:/g) || []).length, 1);
+});
+
+test("page keyword metadata is limited to three relevant phrases", async () => {
+  const fs = await import("node:fs/promises");
+  const paths = [
+    "../app/cafe/page.tsx",
+    "../app/bathhouse/page.tsx",
+    "../app/rental/page.tsx",
+    "../app/menu/page.tsx",
+    "../app/contacts/page.tsx",
+  ];
+  for (const path of paths) {
+    const page = await fs.readFile(new URL(path, import.meta.url), "utf8");
+    const match = page.match(/keywords:\s*\[([\s\S]*?)\],/);
+    assert.ok(match, `keywords отсутствует: ${path}`);
+    assert.equal((match[1].match(/"[^"]+"/g) || []).length, 3, path);
+  }
 });
 
 test("sitemap uses stable URLs instead of reporting every page as newly modified", async () => {
