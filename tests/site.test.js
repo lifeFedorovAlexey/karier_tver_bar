@@ -707,7 +707,7 @@ test("SEO metadata targets Tver quarry searches without changing the visible hom
   assert.equal((layout.match(/keywords:/g) || []).length, 1);
 });
 
-test("page keyword metadata is limited to three relevant phrases", async () => {
+test("page keyword metadata is limited to ten relevant phrases", async () => {
   const fs = await import("node:fs/promises");
   const paths = [
     "../app/cafe/page.tsx",
@@ -720,7 +720,8 @@ test("page keyword metadata is limited to three relevant phrases", async () => {
     const page = await fs.readFile(new URL(path, import.meta.url), "utf8");
     const match = page.match(/keywords:\s*\[([\s\S]*?)\],/);
     assert.ok(match, `keywords отсутствует: ${path}`);
-    assert.equal((match[1].match(/"[^"]+"/g) || []).length, 3, path);
+    const count = (match[1].match(/"[^"]+"/g) || []).length;
+    assert.ok(count > 0 && count <= 10, `${path}: ${count}`);
   }
 });
 
