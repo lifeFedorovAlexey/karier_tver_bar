@@ -550,9 +550,9 @@ test("footer social links point to the confirmed venue profiles", async () => {
   const footer = await (
     await import("node:fs/promises")
   ).readFile(new URL("../components/Footer.tsx", import.meta.url), "utf8");
-  assert.match(footer, /https:\/\/vk\.ru\/tverplazh/);
-  assert.match(footer, /https:\/\/t\.me\/restinginthetver/);
-  assert.match(footer, /https:\/\/www\.instagram\.com\/tverplazh\//);
+  assert.ok(footer.includes('href="https://vk.ru/tverplazh"'));
+  assert.ok(footer.includes('href="https://t.me/restinginthetver"'));
+  assert.ok(footer.includes('href="https://www.instagram.com/tverplazh/"'));
 });
 
 test("confirmed venue contact details replace placeholder data", async () => {
