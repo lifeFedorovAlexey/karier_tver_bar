@@ -1,5 +1,18 @@
 # Деплой «Карьер» на стенд
 
+## Актуальная автоматическая схема
+
+Для нового production-стенда используется GitHub Actions:
+
+- workflow: [`.github/workflows/deploy.yml`](./.github/workflows/deploy.yml);
+- одноразовая настройка сервера: [`ops/server-bootstrap.sh`](./ops/server-bootstrap.sh);
+- логика релиза, canary-проверки и отката: [`ops/deploy-release.sh`](./ops/deploy-release.sh);
+- список Secrets и Variables: [`DEPLOY_SECRETS.md`](./DEPLOY_SECRETS.md).
+
+Старые команды ниже относятся к прежнему ручному стенду и не используются новой
+раскаткой. Новый workflow не делает `git pull` на сервере: GitHub Actions собирает
+архив из текущего коммита и передаёт его по SSH.
+
 Текущий стенд:
 
 - сервер: `root@5.42.119.142`

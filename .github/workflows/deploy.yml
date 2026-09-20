@@ -1,0 +1,132 @@
+name: Deploy production
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: karier-production
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Check and package
+    runs-on: ubuntu-latest
+    env:
+      NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL }}
+      NEXT_PUBLIC_YCLIENTS_URL: ${{ vars.NEXT_PUBLIC_YCLIENTS_URL }}
+      NEXT_PUBLIC_YANDEX_METRIKA_ID: ${{ vars.NEXT_PUBLIC_YANDEX_METRIKA_ID }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Prepare public production variables
+        shell: bash
+        run: |
+          set -euo pipefail
+          : "${NEXT_PUBLIC_SITE_URL:?Set the NEXT_PUBLIC_SITE_URL repository variable}"
+          : "${NEXT_PUBLIC_YCLIENTS_URL:?Set the NEXT_PUBLIC_YCLIENTS_URL repository variable}"
+          {
+            printf 'NEXT_PUBLIC_SITE_URL=%s\n' "$NEXT_PUBLIC_SITE_URL"
+            printf 'NEXT_PUBLIC_YCLIENTS_URL=%s\n' "$NEXT_PUBLIC_YCLIENTS_URL"
+            if [[ -n "${NEXT_PUBLIC_YANDEX_METRIKA_ID:-}" ]]; then
+              printf 'NEXT_PUBLIC_YANDEX_METRIKA_ID=%s\n' "$NEXT_PUBLIC_YANDEX_METRIKA_ID"
+            fi
+          } > .env.production.local
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run checks and production build
+        run: npm run check
+
+      - name: Package the exact built commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          RELEASE_ARCHIVE="karier-${GITHUB_SHA}.tar.gz"
+          rm -rf release "$RELEASE_ARCHIVE"
+          mkdir -p release
+          cp -a .next public node_modules app components lib package.json package-lock.json next.config.ts release/
+          tar -czf "$RELEASE_ARCHIVE" -C release .
+          tar -tzf "$RELEASE_ARCHIVE" | grep -Eq '^\./\.next/BUILD_ID$'
+          tar -tzf "$RELEASE_ARCHIVE" | grep -Eq '^\./node_modules/\.bin/next$'
+
+      - name: Upload release artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: karier-release-${{ github.sha }}
+          path: karier-${{ github.sha }}.tar.gz
+          if-no-files-found: error
+          retention-days: 14
+
+  deploy:
+    name: Deploy verified release
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout deployment scripts
+        uses: actions/checkout@v4
+
+      - name: Download release artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: karier-release-${{ github.sha }}
+
+      - name: Configure SSH
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_SSH_PRIVATE_KEY }}
+          SSH_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$SSH_PRIVATE_KEY"
+          test -n "$SSH_KNOWN_HOSTS"
+          install -d -m 700 "$HOME/.ssh"
+          printf '%s\n' "$SSH_PRIVATE_KEY" | tr -d '\r' > "$HOME/.ssh/id_ed25519"
+          printf '%s\n' "$SSH_KNOWN_HOSTS" | tr -d '\r' > "$HOME/.ssh/known_hosts"
+          chmod 600 "$HOME/.ssh/id_ed25519" "$HOME/.ssh/known_hosts"
+          ssh-keygen -y -f "$HOME/.ssh/id_ed25519" >/dev/null
+
+      - name: Upload release and verify checksum
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          RELEASE_ARCHIVE: karier-${{ github.sha }}.tar.gz
+        shell: bash
+        run: |
+          set -euo pipefail
+          : "${DEPLOY_HOST:?Set DEPLOY_HOST}"
+          : "${DEPLOY_USER:?Set DEPLOY_USER}"
+          PORT="${DEPLOY_PORT:-22}"
+          scp -P "$PORT" -o BatchMode=yes "$RELEASE_ARCHIVE" \
+            "$DEPLOY_USER@$DEPLOY_HOST:/tmp/$RELEASE_ARCHIVE"
+          LOCAL_SHA="$(sha256sum "$RELEASE_ARCHIVE" | cut -d' ' -f1)"
+          REMOTE_SHA="$(ssh -p "$PORT" -o BatchMode=yes "$DEPLOY_USER@$DEPLOY_HOST" \
+            "sha256sum /tmp/$RELEASE_ARCHIVE | cut -d' ' -f1")"
+          test "$LOCAL_SHA" = "$REMOTE_SHA"
+
+      - name: Canary, switch and health-check
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          RELEASE_ARCHIVE: karier-${{ github.sha }}.tar.gz
+        shell: bash
+        run: |
+          set -euo pipefail
+          PORT="${DEPLOY_PORT:-22}"
+          ssh -p "$PORT" -o BatchMode=yes "$DEPLOY_USER@$DEPLOY_HOST" \
+            "bash -s -- '${GITHUB_SHA}' '/tmp/$RELEASE_ARCHIVE'" \
+            < ops/deploy-release.sh
