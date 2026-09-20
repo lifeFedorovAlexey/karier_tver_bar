@@ -65,7 +65,7 @@ jobs:
           rm -f release-manifest.txt
 
       - name: Upload release artifact
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: karier-release-${{ github.sha }}
           path: karier-${{ github.sha }}.tar.gz
