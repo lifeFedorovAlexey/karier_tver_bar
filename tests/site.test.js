@@ -799,7 +799,7 @@ test("app icons and manifest are configured for the venue brand", async () => {
   assert.ok(icon.size > 1000);
   assert.ok(appleIcon.size > 10000);
   assert.match(manifest, /Карьер — кафе, баня и прокат в Твери/);
-  assert.match(manifest, /src: "\/icon"/);
-  assert.match(manifest, /src: "\/apple-icon"/);
+  assert.match(manifest, /src: "\/icon\.png"/);
+  assert.match(manifest, /src: "\/apple-icon\.png"/);
   assert.match(layout, /themeColor: "#17241f"/);
 });
