@@ -59,8 +59,10 @@ jobs:
           mkdir -p release
           cp -a .next public node_modules app components lib package.json package-lock.json next.config.ts release/
           tar -czf "$RELEASE_ARCHIVE" -C release .
-          tar -tzf "$RELEASE_ARCHIVE" | grep -Eq '^\./\.next/BUILD_ID$'
-          tar -tzf "$RELEASE_ARCHIVE" | grep -Eq '^\./node_modules/\.bin/next$'
+          tar -tzf "$RELEASE_ARCHIVE" > release-manifest.txt
+          grep -Eq '^\./\.next/BUILD_ID$' release-manifest.txt
+          grep -Eq '^\./node_modules/\.bin/next$' release-manifest.txt
+          rm -f release-manifest.txt
 
       - name: Upload release artifact
         uses: actions/upload-artifact@v4
