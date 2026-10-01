@@ -12,6 +12,16 @@ const nextConfig: NextConfig = {
   compress: true,
   images: { formats: ["image/avif", "image/webp"] },
   experimental: { inlineCss: true },
+  async redirects() {
+    // Keep the public mirrors on one canonical HTTPS origin. Local health checks
+    // use 127.0.0.1 and must continue to reach the application directly.
+    return ["www.tverplazh.ru", "147.45.189.80"].map((host) => ({
+      source: "/:path*",
+      has: [{ type: "host" as const, value: host.replaceAll(".", "\\.") }],
+      destination: "https://tverplazh.ru/:path*",
+      permanent: true,
+    }));
+  },
   async headers() {
     return [{ source: "/(.*)", headers: securityHeaders }];
   },

@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [{ url: "/images/cafe-hero.webp", alt: "Кафе «Карьер» у воды" }],
   },
-  twitter: { card: "summary_large_image", images: ["/images/cafe-hero.webp"] },
+  twitter: { card: "summary_large_image" },
   robots: { index: true, follow: true },
 };
 
