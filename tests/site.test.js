@@ -698,7 +698,8 @@ test("SEO metadata targets Tver quarry searches without changing the visible hom
     fs.readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
     fs.readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
   ]);
-  assert.match(layout, /Константиновские карьеры в Твери — кафе, баня и прокат/);
+  assert.match(layout, /Карьер — кафе, баня и прокат у воды в Твери/);
+  assert.match(layout, /Константиновского карьера в Твери/);
   assert.doesNotMatch(layout, /example\.ru/);
   assert.match(home, /className="visuallyHidden"[\s\S]*Отдых на Константиновских карьерах в Твери/);
   assert.match(home, /src="\/images\/hero-title\.webp"[\s\S]*alt=""[\s\S]*aria-hidden="true"/);

@@ -7,10 +7,10 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Контакты «Карьер» — телефон, режим работы и карта",
+    absolute: "Карьер в Твери — контакты и как добраться",
   },
   description:
-    "Телефон, режим работы, карта и онлайн-бронирование кафе и бани «Карьер» в Твери.",
+    "Ждём вас на центральном пляже Константиновского карьера в Твери. Ежедневно с 10:00 до 22:00. Телефон: +7 (967) 777-37-71. Карта проезда и онлайн-запись.",
   keywords: [
     "константиновские карьеры",
     "константиновский карьер",
@@ -25,8 +25,8 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/contacts" },
   openGraph: {
-    title: "Контакты кафе и бани «Карьер»",
-    description: "Телефон, режим работы, карта и онлайн-бронирование.",
+    title: "Карьер в Твери — контакты и как добраться",
+    description: "Центральный пляж Константиновского карьера. Ежедневно с 10:00 до 22:00. Телефон: +7 (967) 777-37-71. Карта проезда и онлайн-запись.",
     url: "/contacts",
     siteName: "Карьер",
     locale: "ru_RU",
@@ -66,21 +66,21 @@ export default function ContactsPage() {
           <a href={site.phoneHref} data-metrika-goal="phone_click">
             <PhoneIcon />
             <span>
-              <small>Телефон</small>
+              <small>Телефон</small>{" "}
               <b>{site.phoneLabel}</b>
             </span>
           </a>
           <div>
             <PinIcon />
             <span>
-              <small>Адрес</small>
+              <small>Адрес</small>{" "}
               <b>{site.address}</b>
             </span>
           </div>
           <div>
             <ClockIcon />
             <span>
-              <small>Режим работы</small>
+              <small>Режим работы</small>{" "}
               <b>{site.hours}</b>
             </span>
           </div>
