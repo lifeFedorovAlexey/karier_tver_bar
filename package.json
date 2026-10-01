@@ -11,7 +11,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "test": "node --test tests/site.test.js",
+    "test": "node --test tests/site.test.js tests/metrika.test.js",
     "test:seo": "node --test tests/seo.test.js",
     "check": "npm run lint && npm run test && npm run build && npm run test:seo"
   },

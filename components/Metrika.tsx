@@ -1,4 +1,6 @@
 import Script from "next/script";
+import { Suspense } from "react";
+import { MetrikaNavigation } from "@/components/MetrikaNavigation";
 
 export function Metrika() {
   const id = process.env.NEXT_PUBLIC_YANDEX_METRIKA_ID;
@@ -8,7 +10,10 @@ export function Metrika() {
       <Script
         id="yandex-metrika"
         strategy="afterInteractive"
-      >{`(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,'script','https://mc.yandex.ru/metrika/tag.js','ym');ym(${id},'init',{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});document.addEventListener('click',function(event){if(!(event.target instanceof Element)){return}var target=event.target.closest('[data-metrika-goal]');if(!target){return}var goal=target.getAttribute('data-metrika-goal');if(goal){ym(${id},'reachGoal',goal)}});`}</Script>
+      >{`(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=${id}','ym');ym(${id},'init',{ssr:true,defer:true,clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true,ecommerce:'dataLayer'});window.__karierMetrikaUrl=location.href;ym(${id},'hit',location.href,{referer:document.referrer,title:document.title});window.dispatchEvent(new Event('karier:metrika-ready'));document.addEventListener('click',function(event){if(!(event.target instanceof Element)){return}var target=event.target.closest('[data-metrika-goal]');if(!target){return}var goal=target.getAttribute('data-metrika-goal');if(goal){ym(${id},'reachGoal',goal)}});`}</Script>
+      <Suspense fallback={null}>
+        <MetrikaNavigation counterId={Number(id)} />
+      </Suspense>
       <noscript>
         <div>
           {/* eslint-disable-next-line @next/next/no-img-element -- официальный noscript-пиксель Метрики */}
