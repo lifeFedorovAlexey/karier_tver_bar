@@ -96,7 +96,7 @@ button, input, select, textarea { font: inherit; }
   align-items: flex-start;
 }
 .heroContent { justify-content: center; height: 100%; padding-top: 80px; }
-.eyebrow { text-transform: uppercase; letter-spacing: .22em; font-size: 11px; font-weight: 700; }
+.eyebrow { text-transform: uppercase; letter-spacing: .22em; font-size: 12px; font-weight: 700; }
 .eyebrow.light { color: #f3dfba; }
 .hero h1, .innerHero h1 {
   font-family: var(--display);
@@ -119,7 +119,7 @@ button, input, select, textarea { font: inherit; }
   border-radius: 999px;
   text-transform: uppercase;
   letter-spacing: .08em;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   transition: transform .2s, background .2s;
 }
@@ -136,7 +136,7 @@ button, input, select, textarea { font: inherit; }
   gap: 10px;
   text-transform: uppercase;
   letter-spacing: .16em;
-  font-size: 9px;
+  font-size: 12px;
 }
 .scrollCue span { height: 38px; width: 1px; background: #fff; display: block; }
 
@@ -250,7 +250,7 @@ button, input, select, textarea { font: inherit; }
   border-bottom: 1px solid var(--line);
 }
 .contactPanel small, .contactPanel b { display: block; }
-.contactPanel small { text-transform: uppercase; letter-spacing: .15em; font-size: 9px; margin-bottom: 5px; }
+.contactPanel small { text-transform: uppercase; letter-spacing: .15em; font-size: 12px; margin-bottom: 5px; }
 .contactPanel b { font-size: 16px; }
 .metrikaPixel { position: absolute; left: -9999px; }
 

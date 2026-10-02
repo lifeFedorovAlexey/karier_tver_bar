@@ -29,9 +29,9 @@ body { font-family: var(--font-sans); }
   .logo { min-width: 138px; gap: 8px; }
   .logo svg { width: 43px; }
   .logo strong { font-size: 23px; }
-  .desktopNav { gap: 29px; font-size: 11px; }
+  .desktopNav { gap: 29px; font-size: 12px; }
   .desktopNav a.active::after { right: 0; }
-  .phoneLink { margin-left: auto; font-size: 11px; }
+  .phoneLink { margin-left: auto; font-size: 12px; }
   .headerBooking .button { min-width: 139px; min-height: 34px; }
 
   .heroContent { padding-top: 72px; }
@@ -224,7 +224,7 @@ body { font-family: var(--font-sans); }
     padding: 12px 23px;
     background: rgba(29, 29, 25, .78);
     clip-path: polygon(3% 9%, 22% 2%, 44% 6%, 67% 1%, 97% 8%, 94% 93%, 75% 98%, 48% 94%, 25% 99%, 3% 90%);
-    font-size: 11px;
+    font-size: 12px;
     line-height: 1.25;
     text-transform: uppercase;
   }

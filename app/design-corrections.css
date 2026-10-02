@@ -606,7 +606,7 @@ body {
 .manifestoCopy span {
   display: block;
   font-family: var(--font-condensed);
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 500;
   line-height: 1.25;
   letter-spacing: 0.2em;
@@ -614,8 +614,8 @@ body {
 .manifestoCopy p {
   margin: 8px 0 0;
   font-family: var(--font-sans);
-  font-size: 8px;
-  line-height: 1.35;
+  font-size: 14px;
+  line-height: 1.5;
 }
 .manifestoNote {
   justify-self: center;
@@ -656,12 +656,12 @@ body {
     padding: 18px 24px;
   }
   .manifestoCopy span {
-    font-size: 12px;
+    font-size: 14px;
     letter-spacing: 0.24em;
   }
   .manifestoCopy p {
     margin-top: 10px;
-    font-size: 10px;
+    font-size: 14px;
   }
   .manifestoNote {
     font-size: 28px;
@@ -686,12 +686,12 @@ body {
     padding: 10px 12px;
   }
   .manifestoCopy span {
-    font-size: 8px;
+    font-size: 14px;
     letter-spacing: 0.16em;
   }
   .manifestoCopy p {
     margin-top: 6px;
-    font-size: 7px;
+    font-size: 14px;
   }
   .manifestoCopyBreak {
     display: none;
@@ -821,7 +821,7 @@ body {
 .homeCards .experienceContent p {
   max-width: 190px;
   margin: 0;
-  font-size: clamp(9px, 1vw, 13px);
+  font-size: clamp(12px, 1vw, 14px);
   line-height: 1.25;
   text-transform: uppercase;
 }
@@ -848,7 +848,7 @@ body {
   }
   .homeCards .experienceContent p {
     max-width: 150px;
-    font-size: clamp(9px, 1.5vw, 11px);
+    font-size: 12px;
   }
 }
 
@@ -869,8 +869,8 @@ body {
     font-size: clamp(30px, 10vw, 38px);
   }
   .homeCards .experienceContent p {
-    max-width: 145px;
-    font-size: clamp(9px, 2.8vw, 11px);
+    max-width: 190px;
+    font-size: 13px;
   }
 }
 
@@ -1292,7 +1292,7 @@ body {
 }
 .contactBookingCard > small {
   margin-top: 18px;
-  font-size: 10px;
+  font-size: 12px;
   opacity: 0.48;
 }
 
