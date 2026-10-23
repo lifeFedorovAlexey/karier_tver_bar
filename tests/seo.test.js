@@ -59,6 +59,11 @@ test("homepage LCP has responsive static sources in its server-rendered HTML", a
   assert.doesNotMatch(picture, /\/_next\/image\?/);
   const sources = [...picture.matchAll(/(?:srcSet|srcset)="([^"]+)"/g)];
   assert.equal(sources.length, 2, "AVIF and WebP fallback must both be responsive");
+  const head = html.slice(0, html.indexOf("</head>"));
+  const preload = [...head.matchAll(/<link\b[^>]*>/g)].map(([tag]) => tag)
+    .find((tag) => tag.includes('as="image"') && tag.includes('type="image/avif"'));
+  assert.ok(preload, "LCP preload must be hoisted into the document head");
+  assert.ok(preload.includes(sources[0][1]), "preload must select the same image as picture");
   for (const [, srcset] of sources) {
     for (const candidate of srcset.split(", ")) {
       const [url, descriptor] = candidate.split(" ");

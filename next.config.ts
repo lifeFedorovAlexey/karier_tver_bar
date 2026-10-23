@@ -12,6 +12,7 @@ const nextConfig: NextConfig = {
   compress: true,
   images: {
     formats: ["image/avif", "image/webp"],
+    qualities: [60, 75],
     // Avoid jumping from 1200 to 1920px for laptop-sized full-width photos.
     deviceSizes: [640, 750, 828, 1080, 1200, 1440, 1920, 2048, 3840],
   },

@@ -11,6 +11,15 @@ import { homeHero } from "@/lib/home-hero";
 export default function HomePage() {
   return (
     <main>
+      <link
+        rel="preload"
+        as="image"
+        type="image/avif"
+        href={homeHero.avifSrc}
+        imageSrcSet={homeHero.avifSrcSet}
+        imageSizes="100vw"
+        fetchPriority="high"
+      />
       <section className="hero homeHero">
         <ParallaxHeroImage
           src={homeHero.src}

@@ -13,6 +13,7 @@ const srcSet = (images: { src: string; width: number }[]) =>
 
 export const homeHero = {
   src: webp1920.src,
+  avifSrc: avif1920.src,
   // Turbopack emits AVIF files but returns placeholder dimensions. Use the
   // matching WebP dimensions, which are read from the actual encoded files.
   avifSrcSet: srcSet([

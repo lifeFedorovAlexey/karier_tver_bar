@@ -17,9 +17,9 @@ import "./content-widths.css";
 
 // Prioritize Cyrillic text on the first screen. Other subsets remain available
 // through unicode-range and load when used, rather than competing with LCP.
-const sans = Manrope({ subsets: ["cyrillic"], weight: ["400", "500", "600", "700"], variable: "--font-sans", display: "swap" });
+const sans = Manrope({ subsets: ["cyrillic"], variable: "--font-sans", display: "swap" });
 const script = Marck_Script({ subsets: ["cyrillic", "latin"], preload: false, weight: "400", variable: "--font-script", display: "swap" });
-const condensed = Oswald({ subsets: ["cyrillic"], weight: ["400", "500", "600", "700"], variable: "--font-condensed", display: "swap" });
+const condensed = Oswald({ subsets: ["cyrillic"], variable: "--font-condensed", display: "swap" });
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
