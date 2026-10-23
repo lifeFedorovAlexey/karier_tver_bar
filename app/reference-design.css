@@ -56,7 +56,7 @@ body { background: var(--paper); font-size: 14px; }
 .experienceCard { min-height: 390px; border-radius: 12px; }
 .experienceContent { left: 28px; right: 26px; bottom: 24px; }
 .experienceContent .eyebrow { display: none; }
-.experienceContent h3 {
+.experienceContent h2 {
   font-family: var(--display);
   font-size: 36px;
   font-weight: 700;

@@ -17,13 +17,12 @@ async function loadComponent(file, context, imports) {
   return exports;
 }
 
-test("Metrika tracks the first view, SPA navigation and goals without duplicate hydration hits", async () => {
+test("Metrika queues the first view, SPA navigation and goals before the deferred tracker loads", async () => {
   const listeners = new Map();
   const location = { href: "https://tverplazh.ru/?utm_source=test" };
   const document = {
     title: "Карьер", referrer: "https://yandex.ru/", scripts: [],
-    createElement: () => ({}),
-    getElementsByTagName: () => [{ parentNode: { insertBefore() {} } }],
+    createElement: () => { assert.fail("bootstrap must not start a tracker download"); },
     addEventListener: (name, handler) => listeners.set(name, handler),
   };
   const window = {
@@ -43,7 +42,12 @@ test("Metrika tracks the first view, SPA navigation and goals without duplicate 
     "react/jsx-runtime": { jsx, jsxs: jsx },
     "@/components/MetrikaNavigation": { MetrikaNavigation: "navigation" },
   });
-  const script = Metrika().props.children.find((child) => child.props.id === "yandex-metrika");
+  const children = Metrika().props.children;
+  const script = children.find((child) => child.props.id === "yandex-metrika");
+  const loader = children.find((child) => child.props.id === "yandex-metrika-loader");
+  assert.equal(script.props.strategy, "afterInteractive");
+  assert.equal(loader.props.strategy, "lazyOnload");
+  assert.equal(loader.props.src, "https://mc.yandex.ru/metrika/tag.js?id=113267829");
   // Browser globals expose window properties on the global object.
   Object.defineProperty(context, "ym", { get: () => window.ym });
   runInNewContext(script.props.children, context);

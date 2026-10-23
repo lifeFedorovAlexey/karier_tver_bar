@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "images:optimize": "node scripts/optimize-home-images.mjs",
     "start": "next start",
     "lint": "eslint .",
     "test": "node --test tests/site.test.js tests/metrika.test.js tests/image-optimizer.test.js",
@@ -27,6 +28,7 @@
     "@types/react-dom": "^19.2.5",
     "eslint": "^9.39.2",
     "eslint-config-next": "16.4.2",
+    "sharp": "0.35.5",
     "typescript": "^6.0.3"
   }
 }

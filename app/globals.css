@@ -172,7 +172,7 @@ button, input, select, textarea { font: inherit; }
   z-index: 1;
 }
 .experienceContent { position: absolute; z-index: 2; left: 46px; right: 46px; bottom: 40px; }
-.experienceContent h3 { font-family: var(--display); font-size: 64px; margin: 8px 0 0; line-height: 1; }
+.experienceContent h2 { font-family: var(--display); font-size: 64px; margin: 8px 0 0; line-height: 1; }
 .experienceContent p { max-width: 390px; margin: 8px 0 24px; }
 .textLink {
   display: flex;
@@ -296,7 +296,7 @@ button, input, select, textarea { font: inherit; }
   .experienceGrid { grid-template-columns: 1fr; }
   .experienceCard { min-height: 480px; }
   .experienceContent { left: 26px; right: 26px; bottom: 25px; }
-  .experienceContent h3 { font-size: 52px; }
+  .experienceContent h2 { font-size: 52px; }
   .footerMain { grid-template-columns: 1fr; gap: 36px; }
   .innerHero { height: 700px; }
   .innerHero h1 { font-size: 61px; }

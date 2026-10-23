@@ -9,7 +9,7 @@ body { font-family: var(--font-sans); }
 .desktopNav,
 .phoneLink,
 .button,
-.experienceContent h3,
+.experienceContent h2,
 .textLink,
 .manifestoCopy,
 .footer { font-family: var(--font-condensed); }
@@ -49,7 +49,7 @@ body { font-family: var(--font-sans); }
   .experienceCard { min-height: 0; aspect-ratio: 1.032 / 1; border-radius: 12px; }
   .experienceCard > img { object-position: center 54%; }
   .experienceContent { left: 32px; right: 26px; bottom: 18px; }
-  .experienceContent h3 { font-size: 39px; line-height: 1; margin: 0; letter-spacing: .025em; }
+  .experienceContent h2 { font-size: 39px; line-height: 1; margin: 0; letter-spacing: .025em; }
   .experienceContent p { font-size: 14px; line-height: 1.35; margin: 13px 0 101px; max-width: 185px; }
   .experienceContent .textLink { font-size: 11px; letter-spacing: .04em; }
   .textLink i { width: 35px; height: 35px; }
@@ -92,27 +92,27 @@ body { font-family: var(--font-sans); }
 @media (max-width: 430px) {
   .heroActions .button { min-height: 42px; }
   .experienceContent { left: 24px; right: 20px; }
-  .experienceContent h3 { font-size: 34px; }
+  .experienceContent h2 { font-size: 34px; }
   .experienceContent p { font-size: 12px; }
 }
 
 /* Home reference alignment: keep the photographed composition and CTA rhythm
    identical to the supplied mobile-width art direction. */
 @media (min-width: 801px) {
-  .homeHero > img { object-position: 79% center; }
+  .homeHero .heroParallaxImage { object-position: 79% center; }
   .homeHero .heroContent { padding-top: 50px; padding-left: 28px; }
   .homeHero h1 { font-size: clamp(76px, 8.9vw, 112px); }
 
   .homeCards .experienceCard:first-child > img { object-position: center 74%; }
   .homeCards .experienceCard:last-child > img { object-position: center top; }
-  .homeCards .experienceContent h3 { font-size: 41px; }
+  .homeCards .experienceContent h2 { font-size: 41px; }
   .homeCards .textLink { justify-content: flex-start; gap: 15px; }
 
   .footerBrand .logo { transform: translateX(22px); }
 }
 
 @media (max-width: 800px) {
-  .homeHero > img { object-position: 79% center; }
+  .homeHero .heroParallaxImage { object-position: 79% center; }
   .homeCards .experienceCard:first-child > img { object-position: center 74%; }
   .homeCards .experienceCard:last-child > img { object-position: center top; }
   .homeCards .textLink { justify-content: flex-start; gap: 15px; }
@@ -150,7 +150,7 @@ body { font-family: var(--font-sans); }
   height: 170px;
   right: -58px;
   bottom: -12px;
-  background: url("/images/manifesto-brush.webp") center / 100% 100% no-repeat;
+  background: url("../public/images/optimized/manifesto-brush.webp") center / 100% 100% no-repeat;
   opacity: 1;
   transform: none;
   clip-path: none;
@@ -162,7 +162,7 @@ body { font-family: var(--font-sans); }
     height: auto;
     min-height: 0;
   }
-  .homeHero > img { object-position: center 55%; }
+  .homeHero .heroParallaxImage { object-position: center 55%; }
   .homeHero .heroContent {
     justify-content: flex-start;
     padding-top: 150px;
@@ -186,7 +186,7 @@ body { font-family: var(--font-sans); }
   .homeCards .experienceCard:last-child > img { object-position: center 49%; }
   .homeCards .cardShade { background: linear-gradient(0deg, rgba(10,17,14,.84), rgba(10,17,14,0) 62%); }
   .homeCards .experienceContent { left: 23px; right: 20px; bottom: 12px; }
-  .homeCards .experienceContent h3 { display: none; }
+  .homeCards .experienceContent h2 { display: none; }
   .homeCards .experienceContent p {
     max-width: 250px;
     margin: 0 0 14px;
@@ -237,11 +237,11 @@ body { font-family: var(--font-sans); }
 
 @media (max-width: 800px) {
 
-  .homeHero > img { object-position: center 56%; }
+  .homeHero .heroParallaxImage { object-position: center 56%; }
   .homeHero .heroContent { padding-top: 130px; padding-left: 0; }
   .homeHero .heroTitle { width: min(330px, 86vw); }
   .homeHero .heroActions .button { width: 205px; min-width: 205px; min-height: 44px; }
-  .homeCards .experienceContent h3 { display: none; }
+  .homeCards .experienceContent h2 { display: none; }
   .homeCards .experienceContent p { margin-bottom: 14px; }
   .homePanorama { height: 330px; }
   .panoramaNote { left: 26px; bottom: 42px; font-size: 31px; }

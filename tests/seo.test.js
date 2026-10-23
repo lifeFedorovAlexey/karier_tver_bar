@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
+import sharp from "sharp";
 import { routes } from "../lib/site.test-data.js";
 
 // Inspect the actual production output, not the source metadata declarations.
@@ -29,6 +30,11 @@ test("production pages have unique titles, descriptions and canonical URLs", asy
     titles.add(title);
     descriptions.add(description);
     assert.equal((html.match(/<h1(?:\s|>)/g) || []).length, 1, route);
+    let previousHeading = 0;
+    for (const [, level] of html.matchAll(/<h([1-6])(?:\s|>)/g)) {
+      assert.ok(Number(level) <= previousHeading + 1, `skipped heading level on ${route}: h${previousHeading} to h${level}`);
+      previousHeading = Number(level);
+    }
     assert.equal(meta(html, "og:url"), url, route);
     assert.equal(meta(html, "twitter:image"), meta(html, "og:image"), route);
     assert.match(meta(html, "robots"), /index, follow/);
@@ -39,6 +45,28 @@ test("production pages have unique titles, descriptions and canonical URLs", asy
       assert.equal(JSON.parse(data)["@context"], "https://schema.org");
       assert.ok(data.includes(siteUrl), route);
       assert.doesNotMatch(data, /http:\/\/147\.45\.189\.80/);
+    }
+  }
+});
+
+test("homepage LCP has responsive static sources in its server-rendered HTML", async () => {
+  const html = await readOutput("index.html");
+  const picture = html.match(/<picture>([\s\S]*?)<\/picture>/)?.[1];
+  assert.ok(picture, "LCP picture must be discoverable without JavaScript");
+  assert.match(picture, /type="image\/avif"/);
+  assert.match(picture, /fetchPriority="high"|fetchpriority="high"/);
+  assert.match(picture, /loading="eager"/);
+  assert.doesNotMatch(picture, /\/_next\/image\?/);
+  const sources = [...picture.matchAll(/(?:srcSet|srcset)="([^"]+)"/g)];
+  assert.equal(sources.length, 2, "AVIF and WebP fallback must both be responsive");
+  for (const [, srcset] of sources) {
+    for (const candidate of srcset.split(", ")) {
+      const [url, descriptor] = candidate.split(" ");
+      assert.match(url, /^\/_next\/static\/media\/home-hero-/);
+      const bytes = await readFile(new URL(`../.next/${url.slice("/_next/".length)}`, import.meta.url));
+      assert.ok(bytes.length > 0, `missing LCP asset: ${url}`);
+      const { width } = await sharp(bytes).metadata();
+      assert.equal(descriptor, `${width}w`, `incorrect responsive width: ${url}`);
     }
   }
 });

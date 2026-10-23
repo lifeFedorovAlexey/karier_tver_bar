@@ -7,7 +7,7 @@ export function Logo({ light = false, variant = "default" }: { light?: boolean; 
 
   return (
     <Link className={`logo ${light ? "logoLight" : ""} ${variant === "footer" ? "logoFooter" : ""}`} href="/" aria-label="Карьер — на главную">
-      <Image className="logoArtwork" src={artwork} alt="" {...dimensions} sizes={variant === "footer" ? "154px" : "180px"} />
+      <Image className="logoArtwork" src={artwork} alt="" {...dimensions} sizes={variant === "footer" ? "154px" : "(max-width: 800px) 100px, 180px"} />
     </Link>
   );
 }

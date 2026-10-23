@@ -8,6 +8,7 @@ type ParallaxHeroImageProps = {
   alt: string;
   fetchPriority?: "high" | "low" | "auto";
   sizes?: string;
+  sources?: { avifSrcSet: string; webpSrcSet: string };
 };
 
 export function ParallaxHeroImage({
@@ -15,6 +16,7 @@ export function ParallaxHeroImage({
   alt,
   fetchPriority = "high",
   sizes = "100vw",
+  sources,
 }: ParallaxHeroImageProps) {
   const imageRef = useRef<HTMLImageElement>(null);
 
@@ -25,7 +27,7 @@ export function ParallaxHeroImage({
     let frame = 0;
     const update = () => {
       frame = 0;
-      const heroHeight = image.parentElement?.clientHeight ?? 400;
+      const heroHeight = image.closest("section")?.clientHeight ?? 400;
       const offset = Math.min(window.scrollY * 0.12, heroHeight * 0.05);
       image.style.setProperty("--hero-parallax", `${offset}px`);
     };
@@ -40,6 +42,28 @@ export function ParallaxHeroImage({
       if (frame) window.cancelAnimationFrame(frame);
     };
   }, []);
+
+  if (sources) {
+    return (
+      <picture>
+        <source type="image/avif" srcSet={sources.avifSrcSet} sizes={sizes} />
+        {/* Pre-encoded responsive files bypass runtime transforms for LCP. */}
+        <img
+          ref={imageRef}
+          className="heroParallaxImage"
+          src={src}
+          srcSet={sources.webpSrcSet}
+          sizes={sizes}
+          width={1920}
+          height={1920}
+          alt={alt}
+          loading={fetchPriority === "high" ? "eager" : "lazy"}
+          fetchPriority={fetchPriority}
+          decoding="async"
+        />
+      </picture>
+    );
+  }
 
   return (
     <Image

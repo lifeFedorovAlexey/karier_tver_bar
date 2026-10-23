@@ -6,15 +6,17 @@ import { HomeManifesto } from "@/components/HomeManifesto";
 import { ParallaxHeroImage } from "@/components/ParallaxHeroImage";
 import { PinIcon } from "@/components/icons";
 import { site } from "@/lib/site";
+import { homeHero } from "@/lib/home-hero";
 
 export default function HomePage() {
   return (
     <main>
       <section className="hero homeHero">
-            <ParallaxHeroImage
-              src="/images/karier-bathhouse-enhanced-4k.png"
-              alt="Кафе и баня «Карьер» на берегу Константиновского карьера"
-            />
+        <ParallaxHeroImage
+          src={homeHero.src}
+          sources={homeHero}
+          alt="Кафе и баня «Карьер» на берегу Константиновского карьера"
+        />
         <div className="heroShade" />
         <Header overlay />
         <div className="heroContent pageWidth">
@@ -29,7 +31,7 @@ export default function HomePage() {
               aria-hidden="true"
               width={1536}
               height={1024}
-              sizes="(max-width: 800px) 86vw, 330px"
+              sizes="330px"
               loading="eager"
             />
           </h1>

@@ -10,7 +10,13 @@ export function Metrika() {
       <Script
         id="yandex-metrika"
         strategy="afterInteractive"
-      >{`(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=${id}','ym');ym(${id},'init',{ssr:true,defer:true,clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true,ecommerce:'dataLayer'});window.__karierMetrikaUrl=location.href;ym(${id},'hit',location.href,{referer:document.referrer,title:document.title});window.dispatchEvent(new Event('karier:metrika-ready'));document.addEventListener('click',function(event){if(!(event.target instanceof Element)){return}var target=event.target.closest('[data-metrika-goal]');if(!target){return}var goal=target.getAttribute('data-metrika-goal');if(goal){ym(${id},'reachGoal',goal)}});`}</Script>
+      >{`window.ym=window.ym||function(){(window.ym.a=window.ym.a||[]).push(arguments)};window.ym.l=Date.now();ym(${id},'init',{ssr:true,defer:true,clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true,ecommerce:'dataLayer'});window.__karierMetrikaUrl=location.href;ym(${id},'hit',location.href,{referer:document.referrer,title:document.title});window.dispatchEvent(new Event('karier:metrika-ready'));document.addEventListener('click',function(event){if(!(event.target instanceof Element)){return}var target=event.target.closest('[data-metrika-goal]');if(!target){return}var goal=target.getAttribute('data-metrika-goal');if(goal){ym(${id},'reachGoal',goal)}});`}</Script>
+      {/* Queue views and goals immediately; fetch the tracker after page load. */}
+      <Script
+        id="yandex-metrika-loader"
+        src={`https://mc.yandex.ru/metrika/tag.js?id=${id}`}
+        strategy="lazyOnload"
+      />
       <Suspense fallback={null}>
         <MetrikaNavigation counterId={Number(id)} />
       </Suspense>

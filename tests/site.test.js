@@ -50,7 +50,12 @@ test("homepage uses the requested bathhouse artwork", async () => {
     new URL("../components/ParallaxHeroImage.tsx", import.meta.url),
     "utf8",
   );
-  assert.match(page, /<ParallaxHeroImage[\s\S]*src="\/images\/karier-bathhouse-enhanced-4k\.png"/);
+  const imageRecipe = await fs.readFile(
+    new URL("../scripts/optimize-home-images.mjs", import.meta.url),
+    "utf8",
+  );
+  assert.match(page, /<ParallaxHeroImage[\s\S]*src=\{homeHero\.src\}[\s\S]*sources=\{homeHero\}/);
+  assert.match(imageRecipe, /karier-bathhouse-enhanced-4k\.png/);
   assert.match(page, /className="heroTitleArtwork"[\s\S]*src="\/images\/hero-title\.webp"/);
   assert.match(hero, /src=\{src\}/);
   assert.match(hero, /fetchPriority=\{fetchPriority\}/);
@@ -303,7 +308,7 @@ test("experience cards keep the portrait two-column reference geometry", async (
   );
   assert.match(
     css,
-    /\.homeCards \.experienceContent h3\s*\{[^}]*display:\s*block/s,
+    /\.homeCards \.experienceContent h2\s*\{[^}]*display:\s*block/s,
   );
   assert.match(css, /\.homeCards \.textLink\s*\{[^}]*display:\s*none/s);
   assert.match(
