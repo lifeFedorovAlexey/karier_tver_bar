@@ -12,7 +12,7 @@ export function Footer() {
         <div className="footerBrand"><Logo light variant="footer" /></div>
         <div className="footerContacts">
           <a href={site.phoneHref} data-metrika-goal="phone_click"><PhoneIcon size={18} />{site.phoneLabel}</a>
-          <span><PinIcon size={18} />{site.address}</span>
+          <a href={site.mapUrl} target="_blank" rel="noreferrer" data-metrika-goal="map_open" aria-label={`Открыть на карте: ${site.address}`}><PinIcon size={18} />{site.address}</a>
           <span><ClockIcon size={18} />{site.hours}</span>
           <div className="footerSocials" aria-label="Социальные сети">
             <a className="footerSocial" href="https://vk.ru/tverplazh" target="_blank" rel="noreferrer" aria-label="Карьер во ВКонтакте"><BiLogoVk aria-hidden="true" /></a>

@@ -28,10 +28,10 @@ export function Header({ overlay = false }: { overlay?: boolean }) {
         </nav>
         <a className="phoneLink" href={site.phoneHref} data-metrika-goal="phone_click"><PhoneIcon size={16} /> {site.phoneLabel}</a>
         <div className="headerBooking"><ButtonLink href={site.bookingUrl}>Забронировать</ButtonLink></div>
-        <details className="mobileMenu">
+        <details key={pathname} className="mobileMenu">
           <summary aria-label="Открыть меню"><span /><span /><span /></summary>
           <nav aria-label="Мобильная навигация">
-            {navigation.map((item) => <Link key={item.href} href={item.href}>{item.label}</Link>)}
+            {navigation.map((item) => <Link key={item.href} href={item.href} aria-current={item.href === pathname ? "page" : undefined} onClick={(event) => event.currentTarget.closest("details")?.removeAttribute("open")}>{item.label}</Link>)}
           </nav>
         </details>
       </div>

@@ -8,11 +8,12 @@ import { JsonLd, serviceJsonLd } from "@/components/JsonLd";
 import { ParallaxHeroImage } from "@/components/ParallaxHeroImage";
 import { site } from "@/lib/site";
 import { LeafIcon, SteamIcon, WaterIcon } from "@/components/icons";
+import styles from "./bathhouse.module.css";
 
 export const metadata: Metadata = {
   title: { absolute: "Баня «Карьер» в Твери — цены и бронирование" },
   description:
-    "Баня «Карьер» на Константиновских карьерах в Твери: дровяная парная, зона отдыха, выход к воде и онлайн-бронирование.",
+    "Баня на Константиновских карьерах в Твери: от 5 000 ₽ за 3 часа для компании до 6 гостей. С чаном и беседкой — от 7 000 ₽. Условия и онлайн-запись.",
   keywords: [
     "баня карьер тверь",
     "баня на карьерах тверь",
@@ -28,7 +29,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Баня «Карьер» в Твери — цены и бронирование",
     description:
-      "Дровяная баня на Константиновских карьерах: парная, зона отдыха и выход к воде.",
+      "От 5 000 ₽ за 3 часа для компании до 6 гостей. Комплекс с чаном и беседкой — от 7 000 ₽. Цены и онлайн-запись.",
     url: "/bathhouse",
     siteName: "Карьер",
     locale: "ru_RU",
@@ -88,6 +89,38 @@ export default function BathhousePage() {
             отдыха и собственный выход к воде. Всё, что нужно для правильного
             ритуала и долгого спокойного вечера.
           </p>
+        </div>
+      </section>
+      <section className={`${styles.prices} pageWidth`} aria-labelledby="bathhouse-prices">
+        <span className="eyebrow">Перед бронированием</span>
+        <h2 id="bathhouse-prices">Стоимость аренды</h2>
+        <p className={styles.intro}>
+          Минимальный заказ — 3 часа. В стоимость входит компания до 6 гостей.
+        </p>
+        <div className={styles.cards}>
+          <article className={styles.card}>
+            <h3>Баня без чана</h3>
+            <dl className={styles.rates}>
+              <div><dt>Понедельник — четверг</dt><dd>5 000 ₽ <span>/ 3 часа</span></dd></div>
+              <div><dt>Пятница — воскресенье</dt><dd>6 000 ₽ <span>/ 3 часа</span></dd></div>
+            </dl>
+            <p>Шапочки, тапочки и чай входят в стоимость.</p>
+            <p className={styles.extension}>Продление — 1 500 ₽ за час.</p>
+          </article>
+          <article className={styles.card}>
+            <h3>Баня, чан и беседка</h3>
+            <dl className={styles.rates}>
+              <div><dt>Понедельник — четверг</dt><dd>7 000 ₽ <span>/ 3 часа</span></dd></div>
+              <div><dt>Пятница — воскресенье</dt><dd>9 000 ₽ <span>/ 3 часа</span></dd></div>
+            </dl>
+            <p>Сибирский чан на террасе, беседка с мангалом, шапочки, тапочки и чай.</p>
+            <p className={styles.extension}>Продление: пн–чт — 2 000 ₽ за час, пт–вс — 2 500 ₽ за час.</p>
+          </article>
+        </div>
+        <div className={styles.conditions}>
+          <p>Свыше 6 гостей — доплата 300 ₽ за человека в час. Предоплата при записи — 30%.</p>
+          <p>Тарифы опубликованы в нашей форме YCLIENTS. Итоговую стоимость и свободное время проверьте при записи.</p>
+          <ButtonLink href={site.bookingUrl} variant="dark">Выбрать время</ButtonLink>
         </div>
       </section>
       <ImageGallery

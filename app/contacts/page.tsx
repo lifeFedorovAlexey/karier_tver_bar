@@ -41,7 +41,7 @@ export default function ContactsPage() {
       <section className="innerHero contactsVisualHero">
         <ParallaxHeroImage
           src="/images/beach-panorama-2026.webp"
-          alt="Барная стойка кафе «Карьер»"
+          alt="Центральный пляж Константиновского карьера в Твери"
           fetchPriority="high"
           sizes="100vw"
         />
@@ -75,6 +75,15 @@ export default function ContactsPage() {
             <span>
               <small>Адрес</small>{" "}
               <b>{site.address}</b>
+              <a
+                className="contactRoute"
+                href={site.routeUrl}
+                target="_blank"
+                rel="noreferrer"
+                data-metrika-goal="map_open"
+              >
+                Построить маршрут в Яндекс Картах
+              </a>
             </span>
           </div>
           <div>
@@ -109,7 +118,7 @@ export default function ContactsPage() {
         <a
           className="mapLink"
           data-metrika-goal="map_open"
-          href="https://yandex.ru/maps/?ll=35.995277%2C56.846352&mode=whatshere&whatshere%5Bpoint%5D=35.995277%2C56.846352&whatshere%5Bzoom%5D=16&z=16"
+          href={site.mapUrl}
           target="_blank"
           rel="noreferrer"
         >

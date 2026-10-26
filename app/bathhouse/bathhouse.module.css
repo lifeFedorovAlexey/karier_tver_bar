@@ -1,0 +1,60 @@
+.prices {
+  padding-block: 16px 72px;
+}
+
+.prices h2 {
+  margin: 12px 0 16px;
+  font-family: var(--font-condensed);
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 500;
+  line-height: 1.2;
+  scroll-margin-top: 112px;
+}
+
+.intro { margin: 0 0 28px; }
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.card {
+  padding: clamp(24px, 3vw, 40px);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fffcf6;
+}
+
+.card h3 {
+  margin: 0 0 24px;
+  font-family: var(--font-condensed);
+  font-size: 26px;
+  font-weight: 500;
+}
+
+.rates { margin: 0 0 24px; }
+.rates > div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  padding-block: 14px;
+  border-bottom: 1px solid var(--line);
+}
+.rates dt { font-size: 13px; }
+.rates dd { margin: 0; font-size: 22px; font-weight: 600; white-space: nowrap; }
+.rates dd span { font-size: 13px; font-weight: 400; }
+.card p { margin: 12px 0 0; }
+.extension { font-size: 13px; }
+.conditions { max-width: 760px; margin-top: 24px; }
+.conditions p { margin: 0 0 12px; }
+.conditions a { margin-top: 8px; }
+
+@media (max-width: 800px) {
+  .cards { grid-template-columns: 1fr; gap: 16px; }
+  .prices { padding-bottom: 48px; }
+  .rates > div { display: block; }
+  .rates dt { margin-bottom: 8px; }
+}

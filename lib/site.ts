@@ -8,6 +8,11 @@ export const site = {
   phoneLabel: "+7 (967) 777-37-71",
   phoneHref: "tel:+79677773771",
   address: "Тверь, Константиновский карьер, центральный пляж",
+  geo: { latitude: 56.846352, longitude: 35.995277 },
+  mapUrl:
+    "https://yandex.ru/maps/?ll=35.995277%2C56.846352&mode=whatshere&whatshere%5Bpoint%5D=35.995277%2C56.846352&whatshere%5Bzoom%5D=16&z=16",
+  routeUrl:
+    "https://yandex.ru/maps/?mode=routes&rtext=~56.846352%2C35.995277&rtt=auto",
   hours: "Ежедневно с 10:00 до 22:00",
   bookingUrl:
     process.env.NEXT_PUBLIC_YCLIENTS_URL || "https://n1129088.yclients.ru",
@@ -21,6 +26,7 @@ export const site = {
 export const navigation = [
   { href: "/", label: "Главная" },
   { href: "/cafe", label: "Кафе" },
+  { href: "/menu", label: "Меню" },
   { href: "/bathhouse", label: "Баня" },
   { href: "/rental", label: "Прокат" },
   { href: "/contacts", label: "Контакты" },

@@ -252,6 +252,7 @@ button, input, select, textarea { font: inherit; }
 .contactPanel small, .contactPanel b { display: block; }
 .contactPanel small { text-transform: uppercase; letter-spacing: .15em; font-size: 12px; margin-bottom: 5px; }
 .contactPanel b { font-size: 16px; }
+.contactRoute { display: inline-flex; align-items: center; min-height: 44px; margin-top: 4px; text-decoration: underline; text-underline-offset: 4px; }
 .metrikaPixel { position: absolute; left: -9999px; }
 
 @media (max-width: 800px) {

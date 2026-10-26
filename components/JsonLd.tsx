@@ -14,6 +14,7 @@ export function websiteJsonLd(): JsonLdData {
         name: site.name,
         url: siteUrl,
         telephone: site.phoneLabel,
+        address: site.address,
         sameAs: site.socialUrls,
       },
       {
@@ -40,6 +41,9 @@ export function restaurantJsonLd(): JsonLdData {
     description:
       "Кафе «Карьер» на Константиновских карьерах в Твери.",
     telephone: site.phoneLabel,
+    address: site.address,
+    geo: { "@type": "GeoCoordinates", ...site.geo },
+    hasMap: site.mapUrl,
     openingHours: "Mo-Su 10:00-22:00",
     servesCuisine: "Современная русская кухня",
     priceRange: "₽₽",
