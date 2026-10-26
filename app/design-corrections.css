@@ -1135,49 +1135,37 @@ body {
 }
 
 .mapSection {
-  position: relative;
-  height: 440px;
-  overflow: hidden;
-  background: #d9d2c3;
+  padding-bottom: 20px;
+  background: var(--paper);
 }
 .mapSection iframe {
   display: block;
   width: 100%;
-  height: 100%;
+  height: 440px;
   border: 0;
+  background: #d9d2c3;
 }
 .mapLink {
-  position: absolute;
-  z-index: 2;
-  left: 50%;
-  bottom: 28px;
+  width: fit-content;
+  max-width: calc(100% - 32px);
   min-height: 46px;
-  padding: 0 24px;
-  display: inline-flex;
+  margin: 16px auto 0;
+  padding: 12px 24px;
+  display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
   color: #fff;
   background: var(--ink);
   border-radius: 999px;
-  box-shadow: 0 10px 28px rgba(15, 25, 21, 0.3);
   font-family: var(--font-condensed);
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  transform: translateX(-50%);
 }
-
 @media (max-width: 800px) {
-  .mapSection {
-    height: 360px;
-  }
-  .mapLink {
-    bottom: 20px;
-    width: max-content;
-    max-width: calc(100% - 32px);
-  }
+  .mapSection iframe { height: 360px; }
 }
 
 .contentGallery {

@@ -5,6 +5,18 @@ import { ParallaxHeroImage } from "@/components/ParallaxHeroImage";
 import { ClockIcon, PinIcon, PhoneIcon } from "@/components/icons";
 import { site } from "@/lib/site";
 
+const mapBounds = [
+  site.geo.longitude - 0.006,
+  site.geo.latitude - 0.003,
+  site.geo.longitude + 0.006,
+  site.geo.latitude + 0.003,
+].map((coordinate) => coordinate.toFixed(6)).join(",");
+const mapEmbedUrl = `https://www.openstreetmap.org/export/embed.html?${new URLSearchParams({
+  bbox: mapBounds,
+  layer: "mapnik",
+  marker: `${site.geo.latitude},${site.geo.longitude}`,
+})}`;
+
 export const metadata: Metadata = {
   title: {
     absolute: "Карьер в Твери — контакты и как добраться",
@@ -110,19 +122,18 @@ export default function ContactsPage() {
       </section>
       <section className="mapSection" aria-label="Расположение на карте">
         <iframe
-          src="https://yandex.ru/map-widget/v1/?ll=35.995277%2C56.846352&z=16&pt=35.995277%2C56.846352%2Cpm2rdm"
-          title="Карьер на Яндекс Картах"
+          src={mapEmbedUrl}
+          title="Карьер на карте OpenStreetMap"
           loading="lazy"
-          allowFullScreen
         />
         <a
           className="mapLink"
           data-metrika-goal="map_open"
-          href={site.mapUrl}
+          href={site.routeUrl}
           target="_blank"
           rel="noreferrer"
         >
-          <PinIcon size={18} /> Открыть в Яндекс Картах
+          <PinIcon size={18} /> Построить маршрут
         </a>
       </section>
     </main>

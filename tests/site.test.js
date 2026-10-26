@@ -462,16 +462,18 @@ test("inner heroes use the shared three-font type system", async () => {
   );
 });
 
-test("contacts page embeds the confirmed Yandex map point", async () => {
-  const page = await (
-    await import("node:fs/promises")
-  ).readFile(new URL("../app/contacts/page.tsx", import.meta.url), "utf8");
-  assert.match(
-    page,
-    /yandex\.ru\/map-widget\/v1\/\?ll=35\.995277%2C56\.846352/,
-  );
-  assert.match(page, /pt=35\.995277%2C56\.846352/);
-  assert.match(page, /Открыть в Яндекс Картах/);
+test("contacts use OpenStreetMap instead of the advertising Yandex embed and keep directions", async () => {
+  const fs = await import("node:fs/promises");
+  const [page, config] = await Promise.all([
+    fs.readFile(new URL("../app/contacts/page.tsx", import.meta.url), "utf8"),
+    fs.readFile(new URL("../lib/site.ts", import.meta.url), "utf8"),
+  ]);
+  assert.doesNotMatch(page, /map-widget|api-maps\.yandex/);
+  assert.match(page, /https:\/\/www\.openstreetmap\.org\/export\/embed\.html/);
+  assert.match(page, /marker: `\$\{site\.geo\.latitude\},\$\{site\.geo\.longitude\}`/);
+  assert.match(page, /href=\{site\.routeUrl\}/);
+  assert.match(config, /rtext=~56\.846352%2C35\.995277/);
+  assert.match(page, /Построить маршрут в Яндекс Картах/);
   assert.doesNotMatch(page, /Точная точка появится после подтверждения адреса/);
 });
 
