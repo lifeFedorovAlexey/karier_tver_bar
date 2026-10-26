@@ -759,13 +759,13 @@ test("structured data separates the website, restaurant, and services without an
   assert.match(rental, /serviceJsonLd\(/);
 });
 
-test("menu has crawlable dishes and omits the duplicated source page", async () => {
+test("menu keeps the image book without a duplicate text menu or source page", async () => {
   const page = await (
     await import("node:fs/promises")
   ).readFile(new URL("../app/menu/page.tsx", import.meta.url), "utf8");
   assert.match(page, /Меню кафе «Карьер» в Твери — блюда и цены/);
-  assert.match(page, /Скрэмбл на тостовом хлебе/);
-  assert.match(page, /Шашлык из свиной шеи/);
+  assert.match(page, /<MenuBook pages=\{menuPages\} \/>/);
+  assert.doesNotMatch(page, /menuGroups|menuText/);
   assert.match(page, /\[1, 3, 4, 5, 6, 7\]/);
   assert.doesNotMatch(page, /m2\.jpg/);
 });
