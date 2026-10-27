@@ -472,7 +472,7 @@ test("contacts use OpenStreetMap instead of the advertising Yandex embed and kee
   assert.match(page, /https:\/\/www\.openstreetmap\.org\/export\/embed\.html/);
   assert.match(page, /marker: `\$\{site\.geo\.latitude\},\$\{site\.geo\.longitude\}`/);
   assert.match(page, /href=\{site\.routeUrl\}/);
-  assert.match(config, /rtext=~56\.846352%2C35\.995277/);
+  assert.match(config, /rtext=~56\.84871%2C35\.995354/);
   assert.match(page, /Построить маршрут в Яндекс Картах/);
   assert.doesNotMatch(page, /Точная точка появится после подтверждения адреса/);
 });
